@@ -1,0 +1,39 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckFunctionExists.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckIncludeFileCXX.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckTypeSize.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Compiler/MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/WindowsPaths.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/CMakeLists.txt
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/assimp-config-version.cmake.in
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/assimp-config.cmake.in
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/assimp.pc.in
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/cmake-modules/FindDirectX.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/cmake-modules/FindPkgMacros.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/cmake-modules/FindZLIB.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/cmake-modules/PrecompiledHeader.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/cmake-modules/cmake_uninstall.cmake.in
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/assimp-3.3.1/revision.h.in
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/3.22.0-rc1/CMakeCCompiler.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/3.22.0-rc1/CMakeCXXCompiler.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/3.22.0-rc1/CMakeRCCompiler.cmake
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/3.22.0-rc1/CMakeSystem.cmake

@@ -1,0 +1,14 @@
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/uninstall.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/UpdateAssimpLibsDebugSymbolsAndDLLs.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/INSTALL.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/ALL_BUILD.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/CMakeFiles/ZERO_CHECK.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/contrib/zlib/CMakeFiles/zlibstatic.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/contrib/zlib/CMakeFiles/INSTALL.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/contrib/zlib/CMakeFiles/ALL_BUILD.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/code/CMakeFiles/assimp.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/code/CMakeFiles/INSTALL.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/tools/assimp_view/CMakeFiles/assimp_viewer.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/tools/assimp_view/CMakeFiles/INSTALL.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/tools/assimp_cmd/CMakeFiles/assimp_cmd.dir
+D:/Visual Studio Proyectos/Plantilla OpenGL/Plantilla OpenGL/build/tools/assimp_cmd/CMakeFiles/INSTALL.dir

@@ -1,0 +1,1449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Assimp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BaseImporter.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BaseProcess.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PostStepRegistry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ImporterRegistry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DefaultIOStream.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DefaultIOSystem.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Importer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SGSpatialSort.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\VertexTriangleAdjacency.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SpatialSort.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SceneCombiner.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ScenePreprocessor.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SkeletonMeshBuilder.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SplitByBoneCountProcess.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StandardShapes.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TargetAnimation.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RemoveComments.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Subdivision.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Bitmap.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Version.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DefaultLogger.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Exporter.cpp">
+      <Filter>Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssimpCExport.cpp">
+      <Filter>Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\CalcTangentsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ComputeUVMappingProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ConvertToLHProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FindDegenerates.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FindInstancesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FindInvalidDataProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FixNormalsStep.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\GenFaceNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\GenVertexNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PretransformVertices.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ImproveCacheLocality.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\JoinVerticesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LimitBoneWeightsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RemoveRedundantMaterials.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RemoveVCProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SortByPTypeProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SplitLargeMeshes.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TextureTransform.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TriangulateProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ValidateDataStructure.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OptimizeGraph.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OptimizeMeshes.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DeboneProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ProcessHelper.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MakeVerboseFormat.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MaterialSystem.cpp">
+      <Filter>MaterialSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StepExporter.cpp">
+      <Filter>Step</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\3DSConverter.cpp">
+      <Filter>3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\3DSLoader.cpp">
+      <Filter>3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\3DSExporter.cpp">
+      <Filter>3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ACLoader.cpp">
+      <Filter>AC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ASELoader.cpp">
+      <Filter>ASE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ASEParser.cpp">
+      <Filter>ASE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssbinExporter.cpp">
+      <Filter>ASSBIN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssbinLoader.cpp">
+      <Filter>ASSBIN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssxmlExporter.cpp">
+      <Filter>ASSXML</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\B3DImporter.cpp">
+      <Filter>B3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BVHLoader.cpp">
+      <Filter>BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaLoader.cpp">
+      <Filter>COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaParser.cpp">
+      <Filter>COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaExporter.cpp">
+      <Filter>COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DXFLoader.cpp">
+      <Filter>DXF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\CSMLoader.cpp">
+      <Filter>CSM</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\HMPLoader.cpp">
+      <Filter>HMP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IRRMeshLoader.cpp">
+      <Filter>IRRMESH</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IRRShared.cpp">
+      <Filter>IRR</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IRRLoader.cpp">
+      <Filter>IRR</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOAnimation.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOBLoader.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOLoader.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOMaterial.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWSLoader.cpp">
+      <Filter>LWS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD2Loader.cpp">
+      <Filter>MD2</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD3Loader.cpp">
+      <Filter>MD3</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD5Loader.cpp">
+      <Filter>MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD5Parser.cpp">
+      <Filter>MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDCLoader.cpp">
+      <Filter>MDC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDLLoader.cpp">
+      <Filter>MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDLMaterialLoader.cpp">
+      <Filter>MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\NFFLoader.cpp">
+      <Filter>NFF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\NDOLoader.cpp">
+      <Filter>NDO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OFFLoader.cpp">
+      <Filter>OFF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileImporter.cpp">
+      <Filter>OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileMtlImporter.cpp">
+      <Filter>OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileParser.cpp">
+      <Filter>OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjExporter.cpp">
+      <Filter>OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreImporter.cpp">
+      <Filter>OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreStructs.cpp">
+      <Filter>OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreBinarySerializer.cpp">
+      <Filter>OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreXmlSerializer.cpp">
+      <Filter>OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreMaterial.cpp">
+      <Filter>OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OpenGEXExporter.cpp">
+      <Filter>OPENGEX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OpenGEXImporter.cpp">
+      <Filter>OPENGEX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PlyLoader.cpp">
+      <Filter>PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PlyParser.cpp">
+      <Filter>PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PlyExporter.cpp">
+      <Filter>PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MS3DLoader.cpp">
+      <Filter>MS3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\COBLoader.cpp">
+      <Filter>COB</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderLoader.cpp">
+      <Filter>BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderDNA.cpp">
+      <Filter>BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderScene.cpp">
+      <Filter>BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderModifier.cpp">
+      <Filter>BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderBMesh.cpp">
+      <Filter>BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderTessellator.cpp">
+      <Filter>BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCLoader.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCReaderGen.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCUtil.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCGeometry.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCMaterial.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCProfile.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCCurve.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCBoolean.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCOpenings.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STEPFileReader.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STEPFileEncoding.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XGLLoader.cpp">
+      <Filter>XGL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXImporter.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXParser.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXTokenizer.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXConverter.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXUtil.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXDocument.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXProperties.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXMeshGeometry.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXMaterial.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXModel.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXAnimation.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXNodeAttribute.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXDeformer.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXBinaryTokenizer.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXDocumentUtil.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3DLoader.cpp">
+      <Filter>Q3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPFileParser.cpp">
+      <Filter>Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPFileImporter.cpp">
+      <Filter>Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPZipArchive.cpp">
+      <Filter>Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RawLoader.cpp">
+      <Filter>RAW</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SIBImporter.cpp">
+      <Filter>SIB</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SMDLoader.cpp">
+      <Filter>SMD</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STLLoader.cpp">
+      <Filter>STL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STLExporter.cpp">
+      <Filter>STL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TerragenLoader.cpp">
+      <Filter>TERRAGEN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\UnrealLoader.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileImporter.cpp">
+      <Filter>X</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileParser.cpp">
+      <Filter>X</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileExporter.cpp">
+      <Filter>X</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFImporter.cpp">
+      <Filter>GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFExporter.cpp">
+      <Filter>GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\D3MFImporter.cpp">
+      <Filter>3MF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\D3MFOpcPackage.cpp">
+      <Filter>3MF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\irrXML.cpp">
+      <Filter>IrrXML</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\ConvertUTF\ConvertUTF.c">
+      <Filter>ConvertUTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\unzip\ioapi.c">
+      <Filter>unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\unzip\unzip.c">
+      <Filter>unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\common\shapes.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\advancing_front.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\cdt.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\sweep.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\sweep_context.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\clipper\clipper.cpp">
+      <Filter>Clipper</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\code\OpenDDLParser.cpp">
+      <Filter>openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\code\DDLNode.cpp">
+      <Filter>openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\code\OpenDDLCommon.cpp">
+      <Filter>openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\code\OpenDDLExport.cpp">
+      <Filter>openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\code\Value.cpp">
+      <Filter>openddl_parser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\fast_atof.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\qnan.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BaseImporter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BaseProcess.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Importer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ScenePrivate.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ByteSwapper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DefaultProgressHandler.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DefaultIOStream.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DefaultIOSystem.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\CInterfaceIOWrapper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Hash.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFF.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MemoryIOWrapper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ParsingUtils.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StreamReader.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StreamWriter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StringComparison.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StringUtils.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SGSpatialSort.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\VertexTriangleAdjacency.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\GenericProperty.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SpatialSort.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SceneCombiner.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ScenePreprocessor.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SkeletonMeshBuilder.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SplitByBoneCountProcess.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SmoothingGroups.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StandardShapes.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TargetAnimation.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RemoveComments.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Subdivision.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Vertex.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LineSplitter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TinyFormatter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Profiler.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LogAux.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Bitmap.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XMLTools.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\DefaultLogger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\LogStream.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\Logger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\NullLogger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Win32DebugLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FileLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StdOStreamLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlobIOSystem.h">
+      <Filter>Exporter</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\CalcTangentsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ComputeUVMappingProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ConvertToLHProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FindDegenerates.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FindInstancesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FindInvalidDataProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FixNormalsStep.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\GenFaceNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\GenVertexNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PretransformVertices.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ImproveCacheLocality.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\JoinVerticesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LimitBoneWeightsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RemoveRedundantMaterials.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RemoveVCProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SortByPTypeProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SplitLargeMeshes.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TextureTransform.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TriangulateProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ValidateDataStructure.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OptimizeGraph.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OptimizeMeshes.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DeboneProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ProcessHelper.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PolyTools.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MakeVerboseFormat.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MaterialSystem.h">
+      <Filter>MaterialSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\StepExporter.h">
+      <Filter>Step</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\3DSHelper.h">
+      <Filter>3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\3DSLoader.h">
+      <Filter>3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\3DSExporter.h">
+      <Filter>3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ACLoader.h">
+      <Filter>AC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ASELoader.h">
+      <Filter>ASE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ASEParser.h">
+      <Filter>ASE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssbinExporter.h">
+      <Filter>ASSBIN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssbinLoader.h">
+      <Filter>ASSBIN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\AssxmlExporter.h">
+      <Filter>ASSXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\B3DImporter.h">
+      <Filter>B3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BVHLoader.h">
+      <Filter>BVH</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaHelper.h">
+      <Filter>COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaLoader.h">
+      <Filter>COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaParser.h">
+      <Filter>COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ColladaExporter.h">
+      <Filter>COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DXFLoader.h">
+      <Filter>DXF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\DXFHelper.h">
+      <Filter>DXF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\CSMLoader.h">
+      <Filter>CSM</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\HMPFileData.h">
+      <Filter>HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\HMPLoader.h">
+      <Filter>HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\HalfLifeFileData.h">
+      <Filter>HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IRRMeshLoader.h">
+      <Filter>IRRMESH</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IRRShared.h">
+      <Filter>IRR</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IRRLoader.h">
+      <Filter>IRR</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOAnimation.h">
+      <Filter>LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOFileData.h">
+      <Filter>LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWOLoader.h">
+      <Filter>LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\LWSLoader.h">
+      <Filter>LWS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD2FileData.h">
+      <Filter>MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD2Loader.h">
+      <Filter>MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD2NormalTable.h">
+      <Filter>MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD3FileData.h">
+      <Filter>MD3</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD3Loader.h">
+      <Filter>MD3</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD5Loader.h">
+      <Filter>MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MD5Parser.h">
+      <Filter>MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDCFileData.h">
+      <Filter>MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDCLoader.h">
+      <Filter>MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDCNormalTable.h">
+      <Filter>MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDLDefaultColorMap.h">
+      <Filter>MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDLFileData.h">
+      <Filter>MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MDLLoader.h">
+      <Filter>MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\NFFLoader.h">
+      <Filter>NFF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\NDOLoader.h">
+      <Filter>NDO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OFFLoader.h">
+      <Filter>OFF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileData.h">
+      <Filter>OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileImporter.h">
+      <Filter>OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileMtlImporter.h">
+      <Filter>OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjFileParser.h">
+      <Filter>OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjTools.h">
+      <Filter>OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\ObjExporter.h">
+      <Filter>OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreImporter.h">
+      <Filter>OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreStructs.h">
+      <Filter>OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreParsingUtils.h">
+      <Filter>OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreBinarySerializer.h">
+      <Filter>OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OgreXmlSerializer.h">
+      <Filter>OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OpenGEXExporter.h">
+      <Filter>OPENGEX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OpenGEXImporter.h">
+      <Filter>OPENGEX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\OpenGEXStructs.h">
+      <Filter>OPENGEX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PlyLoader.h">
+      <Filter>PLY</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PlyParser.h">
+      <Filter>PLY</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\PlyExporter.h">
+      <Filter>PLY</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\MS3DLoader.h">
+      <Filter>MS3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\COBLoader.h">
+      <Filter>COB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\COBScene.h">
+      <Filter>COB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderLoader.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderDNA.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderDNA.inl">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderScene.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderSceneGen.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderIntermediate.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderModifier.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderBMesh.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\BlenderTessellator.h">
+      <Filter>BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCLoader.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCReaderGen.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\IFCUtil.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STEPFile.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STEPFileReader.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STEPFileEncoding.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XGLLoader.h">
+      <Filter>XGL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXCompileConfig.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXImporter.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXParser.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXTokenizer.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXImportSettings.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXConverter.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXUtil.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXDocument.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXProperties.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\FBXMeshGeometry.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3DLoader.h">
+      <Filter>Q3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPFileData.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPFileParser.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPFileImporter.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\Q3BSPZipArchive.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\RawLoader.h">
+      <Filter>RAW</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SIBImporter.h">
+      <Filter>SIB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\SMDLoader.h">
+      <Filter>SMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STLLoader.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\STLExporter.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\TerragenLoader.h">
+      <Filter>TERRAGEN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\UnrealLoader.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileHelper.h">
+      <Filter>X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileImporter.h">
+      <Filter>X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileParser.h">
+      <Filter>X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\XFileExporter.h">
+      <Filter>X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFAsset.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFAsset.inl">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFAssetWriter.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFAssetWriter.inl">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFImporter.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\glTFExporter.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\D3MFImporter.h">
+      <Filter>3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\D3MFOpcPackage.h">
+      <Filter>3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\irrXMLWrapper.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\CXMLReaderImpl.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\heapsort.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\irrArray.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\irrString.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\irrTypes.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\irrXML\irrXML.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\ConvertUTF\ConvertUTF.h">
+      <Filter>ConvertUTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\unzip\crypt.h">
+      <Filter>unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\unzip\ioapi.h">
+      <Filter>unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\unzip\unzip.h">
+      <Filter>unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\common\shapes.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\common\utils.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\advancing_front.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\cdt.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\sweep.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\poly2tri\poly2tri\sweep\sweep_context.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\clipper\clipper.hpp">
+      <Filter>Clipper</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\include\openddlparser\OpenDDLParser.h">
+      <Filter>openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h">
+      <Filter>openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\include\openddlparser\OpenDDLCommon.h">
+      <Filter>openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\include\openddlparser\OpenDDLExport.h">
+      <Filter>openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\include\openddlparser\DDLNode.h">
+      <Filter>openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\contrib\openddlparser\include\openddlparser\Value.h">
+      <Filter>openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\anim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\ai_assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\color4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\color4.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\cfileio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\material.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\matrix3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\matrix3x3.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\matrix4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\matrix4x4.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\postprocess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\quaternion.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\metadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\vector2.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\vector3.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\cimport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\importerdesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\Importer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\ProgressHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\IOStream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\IOSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\cexport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\Exporter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\Compiler\pushpack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\Compiler\poppack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\include\assimp\Compiler\pstdint.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Visual Studio Proyectos\Plantilla OpenGL\Plantilla OpenGL\assimp-3.3.1\code\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="3D">
+      <UniqueIdentifier>{00A0EAAF-D229-3B1C-B30D-9FFD27644C80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3DS">
+      <UniqueIdentifier>{2C5F326E-CEFE-3FDE-99F5-1FCE021C9E96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3MF">
+      <UniqueIdentifier>{51D19702-D3F7-39A9-87EC-B5564638C39A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AC">
+      <UniqueIdentifier>{001FE315-39BB-3318-AB7D-CEDDA246337B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASE">
+      <UniqueIdentifier>{862317FB-27C0-3B49-961B-D5CEC9C535D9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASSBIN">
+      <UniqueIdentifier>{1B051A84-5D5D-384E-A544-12D036086213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASSXML">
+      <UniqueIdentifier>{2BF97D87-2674-3E84-979D-632B415DBD5C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="B3D">
+      <UniqueIdentifier>{5725141D-08C0-3038-9851-6A355F697F73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BLEND">
+      <UniqueIdentifier>{6ECAB6B2-CF16-3E57-927F-B74DFCE6B5A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BVH">
+      <UniqueIdentifier>{7260E15E-970F-35B3-B1E2-18ED3D225718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="COB">
+      <UniqueIdentifier>{D799EC2F-7376-3028-9FDD-967619DDD33B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="COLLADA">
+      <UniqueIdentifier>{3700FAED-F7EB-3B1B-8518-31F113CA92FA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSM">
+      <UniqueIdentifier>{40D86978-1CF9-30EA-BCE1-BD285F2AE2E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Clipper">
+      <UniqueIdentifier>{E3338B96-7523-3319-9E7C-9C3907F66A8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{FED39072-CCFF-3C5F-A298-9C502AFA5620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compiler">
+      <UniqueIdentifier>{9EC8367F-AA14-3884-BFF6-CBCF7E768425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConvertUTF">
+      <UniqueIdentifier>{BFA1C90E-398D-3E06-A18D-7C3CC4354280}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXF">
+      <UniqueIdentifier>{49A7689F-C3D9-3DCF-B478-6E6654CC2637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exporter">
+      <UniqueIdentifier>{535F2D34-1359-3C58-A230-43224B8C688E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FBX">
+      <UniqueIdentifier>{54C319FD-BE89-3265-BD58-315A3F04AA48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLTF">
+      <UniqueIdentifier>{B785EE96-B127-331B-85DD-49B053996D63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HMP">
+      <UniqueIdentifier>{2C3701C1-B825-3CFA-8EFF-B9D076340632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{56BB0FCF-2A29-31C8-996A-B3E0B426FE02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IFC">
+      <UniqueIdentifier>{FB85BA3E-0779-37BA-A862-C298972EF549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IRR">
+      <UniqueIdentifier>{B53AFF8A-06E5-3F42-96C0-F4139CA53D72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IRRMESH">
+      <UniqueIdentifier>{00FE5BC4-EA19-3754-8112-8CEC0BBA54E7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IrrXML">
+      <UniqueIdentifier>{AF5D3F8D-7E3E-3B3F-8CA0-B042FF671525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LWO">
+      <UniqueIdentifier>{59B0356A-6B49-35F5-99D2-14CFF59AA4FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LWS">
+      <UniqueIdentifier>{135B29FE-66AB-3CE9-9CCF-D98DDA04B242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{E2B6CEA0-E213-3E62-98EF-F7498842047A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD2">
+      <UniqueIdentifier>{0ACF924F-7B20-34EC-80CE-25C5C7FC49F2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD3">
+      <UniqueIdentifier>{70E73456-1651-3047-9F91-ECA3A3AC346A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD5">
+      <UniqueIdentifier>{716CA934-7341-3519-877F-BEDC636F3D9C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MDC">
+      <UniqueIdentifier>{1F7E9904-79A0-33A7-989D-A883F1F0C21A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MDL">
+      <UniqueIdentifier>{66C3E030-4F30-3162-9C46-7624A197E823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MS3D">
+      <UniqueIdentifier>{D79BC3C0-D59E-3F7E-944C-AE7383988B1B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MaterialSystem">
+      <UniqueIdentifier>{80BA614F-C4EC-335A-B256-7D48FC332F4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NDO">
+      <UniqueIdentifier>{31E72FEC-D91A-35A2-8F8C-8348FA338187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NFF">
+      <UniqueIdentifier>{5B62E76B-826B-3CE8-92F6-ECECEBBC2C47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBJ">
+      <UniqueIdentifier>{94E3F43F-DFBC-3781-9580-C66003914212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OFF">
+      <UniqueIdentifier>{3CEE713E-2AE6-3606-8615-DFEC09BAB982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OGRE">
+      <UniqueIdentifier>{AF745896-E43E-32DB-AB12-097B8953174C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OPENGEX">
+      <UniqueIdentifier>{C1E0073B-877D-3CA0-9390-F1368D42D90A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PLY">
+      <UniqueIdentifier>{DD02EC6E-FD3C-3EBF-AD1D-E664C8E4C48C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Poly2Tri">
+      <UniqueIdentifier>{C61296A3-742F-321D-98EC-18E4D3DE03E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostProcessing">
+      <UniqueIdentifier>{A8A1E39D-59E2-3F3A-87F2-6178047154EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Q3BSP">
+      <UniqueIdentifier>{D4546714-9F35-3539-A495-B28CB6E991FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Q3D">
+      <UniqueIdentifier>{B97D5139-3F26-32B2-A678-10D170E0766C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RAW">
+      <UniqueIdentifier>{E3D9FE4D-7197-3C8C-ACFB-2FED64FF6AA9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SIB">
+      <UniqueIdentifier>{65596186-6B80-3482-957D-4D39A6AE5B27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SMD">
+      <UniqueIdentifier>{29B81644-732C-3855-A91B-B14EF00B1B0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STL">
+      <UniqueIdentifier>{D4756779-826F-3CFB-A9EE-4452D7EF8B4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{FC7266A8-99D4-36BD-BA59-668166BDF177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Step">
+      <UniqueIdentifier>{70C1F3E9-4A52-34AA-B7BB-B2B46C1C38A3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TERRAGEN">
+      <UniqueIdentifier>{190ACBBE-039F-3D6D-B661-A5E817D95D72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="X">
+      <UniqueIdentifier>{C5F6EBF9-B05E-3005-9949-A596CF351249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XGL">
+      <UniqueIdentifier>{23B0DEDA-5806-3F91-8919-305C89B3501F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="openddl_parser">
+      <UniqueIdentifier>{0FB57465-2653-341B-8DD3-B8ED8EC4551F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unzip">
+      <UniqueIdentifier>{ECD95E1E-A5D6-38B2-AC4D-FEA2185EC2A3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

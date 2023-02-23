@@ -1,0 +1,10 @@
+
+
+
+class Skydome
+{
+private:
+	
+public:
+	
+};
