@@ -27,9 +27,9 @@ public:
 		//TextureID = glGetUniformLocation(programID, "myTextureSampler");
 
 		// Load the texture
-		 DiffuseTexture = texture->LoadDDS(difuse);
-		 NormalTexture = texture->LoadDDS(normal);
-		 SpecularTexture = texture->LoadDDS(specular);
+		 DiffuseTexture = texture->LoadAnyTexture(difuse);
+		 NormalTexture = texture->LoadAnyTexture(normal);
+		 SpecularTexture = texture->LoadAnyTexture(specular);
 
 		 // Get a handle for our "myTextureSampler" uniform
 		  DiffuseTextureID = glGetUniformLocation(programID, "DiffuseTextureSampler");
