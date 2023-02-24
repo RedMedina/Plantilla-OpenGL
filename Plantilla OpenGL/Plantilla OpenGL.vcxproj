@@ -161,8 +161,12 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="skydome.h" />
+    <ClInclude Include="tangentspace.h" />
+    <ClInclude Include="vboindexer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NormalMapping.fragmentshader" />
+    <None Include="NormalMapping.vertexshader" />
     <None Include="TextureFragmentShader.fragmentshader" />
     <None Include="TransformVertexShader.vertexshader" />
   </ItemGroup>

@@ -169,10 +169,12 @@ int main(void)
 		glm::mat4 ProjectionMatrix = getProjectionMatrix();
 		glm::mat4 ViewMatrix = getViewMatrix();
 		glm::mat4 ModelMatrix = glm::mat4(1.0);
+		glm::mat4 ModelViewMatrix = ViewMatrix * ModelMatrix;
+		glm::mat3 ModelView3x3Matrix = glm::mat3(ModelViewMatrix);
 		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
 		
 		//Renderiza el juego
-		MainScene->Render(MVP);
+		MainScene->Render(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix);
 
 		//Frames
 		frames++;

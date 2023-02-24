@@ -17,17 +17,18 @@ public:
 		/*Inicializamos algo*/
 		lights = new Lights;
 		lights->InitLights();
-		ModeloTest = new Modelo3D("TransformVertexShader.vertexshader", "TextureFragmentShader.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/uvmap.DDS");
+		ModeloTest = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/ArbolAzul/Arbol.obj", "Assets/Modelos/ArbolAzul/ArbolTextura.DDS", "Assets/Modelos/ArbolAzul/ArbolTextura.DDS", "Assets/Modelos/ArbolAzul/ArbolN.dds");
 	}
 
-	void Render(glm::mat4 MVP)
+	void Render(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix)
 	{
 		/*Aqui se ejecutara todo el juego*/
 
 		// Borra el buffer de color
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		ModeloTest->Draw(MVP);
+		/*Carga los modelos*/
+		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix);
 
 		/*Revisa si se dibujó el objeto*/
 		if (init < 1)

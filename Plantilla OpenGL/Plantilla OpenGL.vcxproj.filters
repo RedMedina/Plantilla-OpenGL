@@ -50,12 +50,24 @@
     <ClInclude Include="LoadTexture.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="vboindexer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="tangentspace.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TransformVertexShader.vertexshader">
       <Filter>Shaders</Filter>
     </None>
     <None Include="TextureFragmentShader.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="NormalMapping.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="NormalMapping.vertexshader">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
