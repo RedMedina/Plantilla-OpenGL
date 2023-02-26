@@ -28,7 +28,7 @@ float verticalAngle = 0.0f;
 // Initial Field of View
 float initialFoV = 45.0f;
 
-float speed = 3.0f; // 3 units / second
+float speed = 15.0f; // 3 units / second
 float mouseSpeed = 0.005f;
 
 void computeMatricesFromInputs() {
@@ -174,7 +174,7 @@ int main(void)
 		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
 		
 		//Renderiza el juego
-		MainScene->Render(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix);
+		MainScene->Render(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, position);
 
 		//Frames
 		frames++;

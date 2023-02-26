@@ -1,3 +1,6 @@
+#ifndef __LoadTexture
+#define __LoadTexture
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -223,3 +226,5 @@ public:
 		return textureID;
 	}
 };
+
+#endif

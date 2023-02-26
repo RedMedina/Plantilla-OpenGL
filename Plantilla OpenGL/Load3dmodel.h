@@ -1,3 +1,5 @@
+#ifndef __Load3DModel
+#define __Load3DModel
 #include <vector>
 #include <stdio.h>
 #include <string>
@@ -105,3 +107,4 @@ public:
 		return true;
 	}
 };
+#endif

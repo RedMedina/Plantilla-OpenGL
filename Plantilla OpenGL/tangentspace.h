@@ -1,3 +1,5 @@
+#ifndef __Tangent
+#define __Tangent
 #include <vector>
 #include <glm/glm.hpp>
 
@@ -71,3 +73,4 @@ public:
 	}
 
 };
+#endif

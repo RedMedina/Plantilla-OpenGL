@@ -56,6 +56,12 @@
     <ClInclude Include="tangentspace.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="quaternion.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TransformVertexShader.vertexshader">
@@ -68,6 +74,18 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="NormalMapping.vertexshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="WaterFragment.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="WaterVertex.vertexhader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Skydome.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Skydome.vertex">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

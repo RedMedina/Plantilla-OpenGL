@@ -1,0 +1,76 @@
+#version 330 core
+
+// Interpolated values from the vertex shaders
+in vec3 FragPos;
+in vec2 UV; //v_TextureCoord 
+in vec3 Normal;
+
+// Ouput data
+out vec4 color;
+
+// Values that stay constant for the whole mesh.
+uniform sampler2D u_Texture;
+uniform sampler2D u_NormalMap;
+uniform vec2 u_TexOffset; // Vector de desplazamiento de la textura
+uniform vec2 u_WaveOffset; // Vector de desplazamiento del oleaje
+
+// Propiedades de la cámara
+uniform vec3 u_CameraPosition;
+uniform mat4 u_ViewMatrix;
+uniform mat4 u_ProjectionMatrix;
+
+// Propiedades de la luz
+uniform vec3 u_LightPosition;
+uniform vec3 u_LightColor;
+
+
+vec3 getReflectionVector(vec3 I, vec3 N) {
+    return I - 2.0 * dot(I, N) * N;
+}
+
+// Función para obtener la cantidad de luz que incide en el fragmento
+float getLightIntensity(vec3 lightPos, vec3 fragPos, vec3 normal) {
+    vec3 lightDir = normalize(lightPos - fragPos);
+    float diff = max(dot(normal, lightDir), 0.0);
+    return diff;
+}
+
+
+void main(){
+	 // Textura de la superficie del agua
+    vec2 texCoord = UV + u_TexOffset;
+    vec4 texColor = texture(u_Texture, texCoord);
+
+    // Textura del normalmap para el oleaje
+    vec2 waveCoord = UV + u_WaveOffset;
+    vec3 normalMap = texture(u_NormalMap, waveCoord).rgb;
+
+    // Ajuste de la normalmap para el efecto de oleaje
+    vec3 normal = normalize(normalMap * 2.0 - 1.0);
+
+    // Reflexión en tiempo real
+    vec3 viewDir = normalize(u_CameraPosition - FragPos);
+    vec3 reflectedDir = getReflectionVector(viewDir, Normal);
+    vec3 reflectedPos = FragPos + reflectedDir * 0.1;
+    vec4 reflectedColor = texture(u_Texture, reflectedPos.xy);
+
+    // Cantidad de luz que incide en la superficie
+    float lightIntensity = getLightIntensity(u_LightPosition, FragPos, normal);
+
+    // Cálculo del color final
+    vec4 waterColor = vec4(texColor.rgb * lightIntensity, texColor.a);
+    vec4 reflectionColor = vec4(reflectedColor.rgb * lightIntensity, reflectedColor.a);
+
+    // Refracción
+    vec3 refractedDir = refract(viewDir, normal, 1.0 / 1.33);
+    vec3 refractedPos = FragPos + refractedDir * 0.1;
+    vec4 refractedColor = texture(u_Texture, refractedPos.xy);
+    vec4 finalColor = mix(waterColor, refractedColor, 0.2);
+
+     // Oleaje
+    float waveFactor = abs(sin(dot(normalMap, vec3(12.9898, 78.233, 45.5432))) * 0.03);
+    finalColor = mix(finalColor, waterColor * (1.0 - waveFactor) + reflectionColor * waveFactor, 0.4);
+
+    // Salida del color final
+    color = finalColor;
+}

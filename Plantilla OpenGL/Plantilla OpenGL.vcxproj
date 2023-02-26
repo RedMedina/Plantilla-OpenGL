@@ -158,17 +158,23 @@
     <ClInclude Include="LoadTexture.h" />
     <ClInclude Include="Modelo3D.h" />
     <ClInclude Include="Primitivos.h" />
+    <ClInclude Include="quaternion.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="skydome.h" />
     <ClInclude Include="tangentspace.h" />
     <ClInclude Include="vboindexer.h" />
+    <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />
+    <None Include="Skydome.fragment" />
+    <None Include="Skydome.vertex" />
     <None Include="TextureFragmentShader.fragmentshader" />
     <None Include="TransformVertexShader.vertexshader" />
+    <None Include="WaterFragment.fragmentshader" />
+    <None Include="WaterVertex.vertexhader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,3 +1,5 @@
+#ifndef __vboindexer
+#define __vboindexer
 #include <vector>
 #include <map>
 #include <glm/glm.hpp>
@@ -172,3 +174,4 @@ public:
 		}
 	}
 };
+#endif

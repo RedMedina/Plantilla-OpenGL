@@ -1,0 +1,9 @@
+
+
+// Values that stay constant for the whole mesh.
+uniform sampler2D myTextureSampler;
+
+void main(){
+	vec4 temp = texture2D(myTextureSampler,gl_TexCoord[0].st);
+	gl_FragColor = temp;
+}

@@ -1,14 +1,23 @@
+#ifndef __Modelo3D
+#define __Modelo3D
+#include "quaternion.h"
 #include "Load3dmodel.h"
 #include "Shader.h"
 #include "LoadTexture.h"
 #include "tangentspace.h"
 #include "vboindexer.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/norm.hpp>
 
 class Modelo3D
 {
 public:
 	Modelo3D(const char* vertexShader, const char* fragmentShader, const char* modelpath, const char* difuse, const char* specular, const char* normal)
 	{
+		quaternion = new Quaternion();
 		vboIndex = new vboindexer();
 		tangent = new tangentspace();
 		glGenVertexArrays(1, &VertexArrayID);
@@ -88,16 +97,10 @@ public:
 		LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
 	}
 
-	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix)
+	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position, glm::vec3 scala, glm::vec3 rotation)
 	{
 		// Use our shader
 		glUseProgram(programID);
-		// in the "MVP" uniform
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-		glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
-		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMatrix[0][0]);
-		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMatrix[0][0]);
-		glUniformMatrix3fv(ModelView3x3MatrixID, 1, GL_FALSE, &ModelView3x3Matrix[0][0]);
 
 		glm::vec3 lightPos = glm::vec3(0, 0, 4);
 		glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
@@ -182,6 +185,20 @@ public:
 
 		// Index buffer
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+
+		// in the "MVP" uniform
+		glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), rotation);
+		glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), position); // A bit to the left
+		glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), scala);
+		glm::mat4 ModelMatrix2 = TranslationMatrix * RotationMatrix * ScalingMatrix;
+
+		glm::mat4 MVP2 = ProjectionMatrix * ViewMatrix * ModelMatrix2;
+
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
+		glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix2[0][0]);
+		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMatrix[0][0]);
+		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMatrix[0][0]);
+		glUniformMatrix3fv(ModelView3x3MatrixID, 1, GL_FALSE, &ModelView3x3Matrix[0][0]);
 
 		// Draw the triangle !
 		// Draw the triangles !
@@ -298,4 +315,7 @@ private:
 	std::vector<glm::vec3> indexed_normals;
 	std::vector<glm::vec3> indexed_tangents;
 	std::vector<glm::vec3> indexed_bitangents;
+	Quaternion* quaternion;
+	bool gLookAtOther = true;
 };
+#endif
