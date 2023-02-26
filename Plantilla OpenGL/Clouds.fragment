@@ -1,0 +1,16 @@
+#version 330 core
+
+in vec2 UV;
+out vec4 fragColor;
+
+uniform sampler2D cloudTexture;
+uniform sampler2D perturbTexture;
+uniform vec2 textureOffset;
+
+void main()
+{
+    vec4 texColor = texture(cloudTexture, (UV*2) + textureOffset);
+    float transparency = texColor.r; // Invertimos el valor del canal rojo de la textura para obtener la transparencia
+    vec3 cloudColor = vec3(1.0) * 5;
+    fragColor = vec4(cloudColor, transparency);
+}

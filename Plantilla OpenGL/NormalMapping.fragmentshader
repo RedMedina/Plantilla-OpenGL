@@ -20,17 +20,23 @@ uniform mat4 V;
 uniform mat4 M;
 uniform mat3 MV3x3;
 uniform vec3 LightPosition_worldspace;
+uniform float time;
 
 void main(){
 
+	float t = 0.5 + 0.5 * cos(time);
 	// Light emission properties
 	// You probably want to put them as uniforms
+	 vec3 color1SunSet = vec3(1.0, 0.9, 0.5);  // Amarillo/anaranjado
+     vec3 color2Night = vec3(0.7, 0.4, 1.0);  // Morado
+	 vec3 finalColor = mix(color1SunSet, color2Night, t);
+
 	vec3 LightColor = vec3(1,1,1);
 	float LightPower = 5.0;
 	
 	// Material properties
 	vec3 MaterialDiffuseColor = texture( DiffuseTextureSampler, UV ).rgb * 10;
-	vec3 MaterialAmbientColor = vec3(0.1,0.1,0.1) * MaterialDiffuseColor;
+	vec3 MaterialAmbientColor = vec3(0.1,0.1,0.1) * MaterialDiffuseColor /* finalColor*/;
 	vec3 MaterialSpecularColor = texture( SpecularTextureSampler, UV ).rgb * 0.03;
 
 	// Local normal, in tangent space. V tex coordinate is inverted because normal map is in TGA (not in DDS) for better quality

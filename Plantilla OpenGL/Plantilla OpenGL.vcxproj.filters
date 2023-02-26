@@ -65,6 +65,9 @@
     <ClInclude Include="Billboards.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Clouds.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TransformVertexShader.vertexshader">
@@ -95,6 +98,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="billboard.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Clouds.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Clouds.fragment">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

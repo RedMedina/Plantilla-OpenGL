@@ -14,7 +14,9 @@ uniform float mixValue;
 
 void main(){
 
+    vec4 celeste = vec4(0.5, 0.7, 1.0, 1.0);
     vec4 color1 = texture(TexturaDia, UV);
+    color1 = mix(color1, celeste, 0.8); // superponemos el color celeste con un factor de mezcla de 0.5
     vec4 color2 = texture(TexturaAtardecer, UV);
     vec4 color3 = texture(TexturaNoche, UV);
 

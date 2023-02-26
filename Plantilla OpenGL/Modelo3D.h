@@ -31,6 +31,8 @@ public:
 		ModelMatrixID = glGetUniformLocation(programID, "M");
 		ModelView3x3MatrixID = glGetUniformLocation(programID, "MV3x3");
 
+		TiempoID = glGetUniformLocation(programID, "time");
+
 		texture = new LoadTexture();
 		//Texture = texture->LoadDDS(texturePath);
 		//TextureID = glGetUniformLocation(programID, "myTextureSampler");
@@ -122,6 +124,39 @@ public:
 		glBindTexture(GL_TEXTURE_2D, SpecularTexture);
 		// Set our "Normal	TextureSampler" sampler to user Texture Unit 0
 		glUniform1i(SpecularTextureID, 2);
+
+		//Lights
+		if (SkyB) {
+			if (Sky > 0.66f)
+			{
+				Sky += 0.00006f * 3.0f;
+			}
+			else
+			{
+				Sky += 0.00006f;
+			}
+		}
+		else {
+			if (Sky > 0.66f)
+			{
+				Sky -= 0.00006f * 3.0f;
+			}
+			else
+			{
+				Sky -= 0.00006f;
+			}
+		}
+
+		if (Sky < 0.0) {
+			Sky = 0.0f;
+			SkyB = true;
+		}
+		else if (Sky > 1.0f) {
+
+			Sky = 1.0f;
+			SkyB = false;
+		}
+		glUniform1f(TiempoID, Sky);
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -309,6 +344,7 @@ private:
 	GLuint DiffuseTextureID;
 	GLuint NormalTextureID;
 	GLuint SpecularTextureID;
+	GLuint TiempoID;
 	std::vector<unsigned short> indices;
 	std::vector<glm::vec3> indexed_vertices;
 	std::vector<glm::vec2> indexed_uvs;
@@ -317,5 +353,7 @@ private:
 	std::vector<glm::vec3> indexed_bitangents;
 	Quaternion* quaternion;
 	bool gLookAtOther = true;
+	float Sky = 0.0f;
+	bool SkyB = true;
 };
 #endif

@@ -55,8 +55,9 @@ public:
         // Use our shader
         glUseProgram(ProgramID);
 
+        skyRotation < 360 ? skyRotation += 0.025f : skyRotation = 0;
         // in the "MVP" uniform
-        glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), vec3(1, 1, 1));
+        glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(skyRotation), vec3(0, 1, 0));
         glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), vec3(0, 0, 0)); // A bit to the left
         glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), vec3(1* Escala, 1* Escala, 1* Escala));
         glm::mat4 ModelMatrix2 = TranslationMatrix * RotationMatrix * ScalingMatrix;
@@ -74,21 +75,21 @@ public:
         if (SkyB) {
             if(Sky>0.66f)
             {
-                Sky += 0.00006f * 3.0f;
+                Sky += 0.00009f * 3.0f;
             }
             else
             {
-                Sky += 0.00006f;
+                Sky += 0.00009f;
             }
         }
         else {
             if (Sky > 0.66f)
             {
-                Sky -= 0.00006f * 3.0f;
+                Sky -= 0.00009f * 3.0f;
             }
             else
             {
-                Sky -= 0.00006f;
+                Sky -= 0.00009f;
             }
         }
 
@@ -176,5 +177,6 @@ private:
     float Escala;
     float Sky = 0.0f;
     bool SkyB = true;
+    float skyRotation = 0;
 };
 

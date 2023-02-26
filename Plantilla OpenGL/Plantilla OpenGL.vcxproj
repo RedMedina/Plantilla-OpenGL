@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="Billboards.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Clouds.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Load3dmodel.h" />
     <ClInclude Include="LoadTexture.h" />
@@ -170,6 +171,8 @@
   <ItemGroup>
     <None Include="billboard.fragment" />
     <None Include="billboard.vertex" />
+    <None Include="Clouds.fragment" />
+    <None Include="Clouds.vertex" />
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />
     <None Include="Skybox.fragment" />
