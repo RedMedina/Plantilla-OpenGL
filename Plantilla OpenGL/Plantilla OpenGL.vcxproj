@@ -162,7 +162,7 @@
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="skydome.h" />
+    <ClInclude Include="skybox.h" />
     <ClInclude Include="tangentspace.h" />
     <ClInclude Include="vboindexer.h" />
     <ClInclude Include="Water.h" />
@@ -172,8 +172,8 @@
     <None Include="billboard.vertex" />
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />
-    <None Include="Skydome.fragment" />
-    <None Include="Skydome.vertex" />
+    <None Include="Skybox.fragment" />
+    <None Include="Skybox.vertex" />
     <None Include="TextureFragmentShader.fragmentshader" />
     <None Include="TransformVertexShader.vertexshader" />
     <None Include="WaterFragment.fragmentshader" />

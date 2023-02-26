@@ -4,7 +4,7 @@
 #include "Modelo3D.h"
 #include "Water.h"
 #include "Billboards.h"
-#include "skydome.h"
+#include "skybox.h"
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "Lights.h"
@@ -20,7 +20,7 @@ public:
 		/*Inicializamos algo*/
 		lights = new Lights;
 		lights->InitLights();
-		skydome = new Skydome(500,"Skydome.vertex", "Skydome.fragment","Assets/Skydome/SkyBoxNcche2.png");
+		skydome = new Skybox(500,"Skybox.vertex", "Skybox.fragment", "Assets/Skydome/Dia.png", "Assets/Skydome/Atardecer.png","Assets/Skydome/SkyBoxNcche2.png");
 		ModeloTest = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/ArbolAzul/Arbol.obj", "Assets/Modelos/ArbolAzul/ArbolTextura.bmp", "Assets/Modelos/ArbolAzul/ArbolTextura.bmp", "Assets/Modelos/ArbolAzul/ArbolN.bmp");
 		ModeloCaja = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/normal.bmp");
 		//Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaC.jpg", 50, 50);
@@ -62,7 +62,7 @@ public:
 	}
 private:
 	int init = 0;
-	Skydome* skydome;
+	Skybox* skydome;
 	Lights* lights;
 	Modelo3D* ModeloTest;
 	Modelo3D* ModeloCaja;

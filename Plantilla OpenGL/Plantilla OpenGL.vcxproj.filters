@@ -26,7 +26,7 @@
     <ClInclude Include="Scene.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="skydome.h">
+    <ClInclude Include="skybox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Lights.h">
@@ -85,10 +85,10 @@
     <None Include="WaterVertex.vertexhader">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Skydome.fragment">
+    <None Include="Skybox.fragment">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Skydome.vertex">
+    <None Include="Skybox.vertex">
       <Filter>Shaders</Filter>
     </None>
     <None Include="billboard.fragment">

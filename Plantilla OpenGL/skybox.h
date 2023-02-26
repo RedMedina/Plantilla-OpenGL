@@ -5,11 +5,11 @@
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtx/norm.hpp>
 
-class Skydome{
+class Skybox{
 
 public:
-	Skydome(float radius, const char* vertexShader, const char* fragmentShader, const char* texturaDia)
-	{
+    Skybox(float radius, const char* vertexShader, const char* fragmentShader, const char* texturaDia, const char* texturaAtardecer, const char* texturaNoche)
+    {
         Escala = radius;
         glGenVertexArrays(1, &VertexArrayID);
         glBindVertexArray(VertexArrayID);
@@ -20,9 +20,17 @@ public:
         MatrixID = glGetUniformLocation(ProgramID, "MVP");
 
         textura = new LoadTexture();
+    
         DiaTextura = textura->LoadAnyTexture(texturaDia);
-
         TexturaIDdia = glGetUniformLocation(ProgramID, "TexturaDia");
+
+        DiaAtar = textura->LoadAnyTexture(texturaAtardecer);
+        DiaAtarID = glGetUniformLocation(ProgramID, "TexturaAtardecer");
+
+        DiaNoche = textura->LoadAnyTexture(texturaNoche);
+        DiaNocheID = glGetUniformLocation(ProgramID, "TexturaNoche");
+
+        IDMix = glGetUniformLocation(ProgramID, "mixValue");
 
         Model = new Load3dModel();
 
@@ -63,11 +71,54 @@ public:
 
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
 
+        if (SkyB) {
+            if(Sky>0.66f)
+            {
+                Sky += 0.00006f * 3.0f;
+            }
+            else
+            {
+                Sky += 0.00006f;
+            }
+        }
+        else {
+            if (Sky > 0.66f)
+            {
+                Sky -= 0.00006f * 3.0f;
+            }
+            else
+            {
+                Sky -= 0.00006f;
+            }
+        }
+
+        if (Sky < 0.0) {
+            Sky = 0.0f;
+            SkyB = true;
+        }
+        else if (Sky > 1.0f) {
+            
+            Sky = 1.0f;
+            SkyB = false;
+        }
+        glUniform1f(IDMix, Sky);
         // Bind our texture in Texture Unit 0
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, DiaTextura);
         // Set our "myTextureSampler" sampler to user Texture Unit 0
         glUniform1i(TexturaIDdia, 0);
+
+        // Bind our texture in Texture Unit 1
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, DiaAtar);
+        // Set our "myTextureSampler" sampler to user Texture Unit 1
+        glUniform1i(DiaAtarID, 1);
+
+        // Bind our texture in Texture Unit 2
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, DiaNoche);
+        // Set our "myTextureSampler" sampler to user Texture Unit 2
+        glUniform1i(DiaNocheID, 2);
 
         // 1rst attribute buffer : vertices
         glEnableVertexAttribArray(0);
@@ -116,12 +167,14 @@ private:
     std::vector<glm::vec2> uvs;
     std::vector<glm::vec3> normals;
     GLuint vbo, ebo, tbo;
-    GLuint ProgramID, VertexArrayID, MatrixID, DiaTextura, TexturaIDdia;
+    GLuint ProgramID, VertexArrayID, MatrixID, DiaTextura, TexturaIDdia, DiaAtar, DiaAtarID, DiaNoche, DiaNocheID, IDMix;
     GLuint vertexbuffer;
     GLuint uvbuffer;
     Shader* shaders;
     LoadTexture* textura;
     Load3dModel* Model;
     float Escala;
+    float Sky = 0.0f;
+    bool SkyB = true;
 };
 
