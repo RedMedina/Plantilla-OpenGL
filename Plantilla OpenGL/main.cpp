@@ -30,6 +30,7 @@ float initialFoV = 45.0f;
 
 float speed = 15.0f; // 3 units / second
 float mouseSpeed = 0.005f;
+bool isMouseEnabled = true;
 
 void computeMatricesFromInputs() {
 
@@ -45,11 +46,11 @@ void computeMatricesFromInputs() {
 	glfwGetCursorPos(window, &xpos, &ypos);
 
 	// Reset mouse position for next frame
-	glfwSetCursorPos(window, 1024 / 2, 768 / 2);
-
+	glfwSetCursorPos(window, 1080 / 2, 720 / 2);
+	
 	// Compute new orientation
-	horizontalAngle += mouseSpeed * float(1024 / 2 - xpos);
-	verticalAngle += mouseSpeed * float(768 / 2 - ypos);
+	horizontalAngle += mouseSpeed * float(1080 / 2 - xpos);
+	verticalAngle += mouseSpeed * float(720 / 2 - ypos);
 
 	// Direction : Spherical coordinates to Cartesian coordinates conversion
 	glm::vec3 direction(
@@ -84,11 +85,15 @@ void computeMatricesFromInputs() {
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
 		position -= right * deltaTime * speed;
 	}
+	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
+		isMouseEnabled = !isMouseEnabled; // Invierte el valor de la variable isMouseEnabled
+		glfwSetInputMode(window, GLFW_CURSOR, isMouseEnabled ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
+	}
 
 	float FoV = initialFoV;// - 5 * glfwGetMouseWheel(); // Now GLFW 3 requires setting up a callback for this. It's a bit too complicated for this beginner's tutorial, so it's disabled instead.
 
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	ProjectionMatrix = glm::perspective(FoV, 4.0f / 3.0f, 0.1f, 100.0f);
+	ProjectionMatrix = glm::perspective(FoV, 4.0f / 3.0f, 0.1f, 2000.0f);
 	// Camera matrix
 	ViewMatrix = glm::lookAt(
 		position,           // Camera is here
@@ -119,7 +124,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Crea una ventana GLFW
-	window = glfwCreateWindow(1024, 768, "Plantilla OpenGL", NULL, NULL);
+	window = glfwCreateWindow(1080, 720, "Plantilla OpenGL", NULL, NULL);
 
 	if (!window)
 	{
@@ -127,6 +132,7 @@ int main(void)
 		return -1;
 	}
 
+	glfwSetWindowPos(window, 500, 100);
 	// Establece el contexto de la ventana como el contexto de OpenGL actual
 	glfwMakeContextCurrent(window);
 
@@ -154,7 +160,7 @@ int main(void)
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	// Set the mouse at the center of the screen
 	glfwPollEvents();
-	glfwSetCursorPos(window, 1024 / 2, 768 / 2);
+	glfwSetCursorPos(window, 1080 / 2, 720 / 2);
 
 	MainScene = new Scene();
 
@@ -174,7 +180,7 @@ int main(void)
 		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
 		
 		//Renderiza el juego
-		MainScene->Render(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, position);
+		MainScene->Render(window, MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, position);
 
 		//Frames
 		frames++;
