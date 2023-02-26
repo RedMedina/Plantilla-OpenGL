@@ -62,6 +62,9 @@
     <ClInclude Include="quaternion.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Billboards.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TransformVertexShader.vertexshader">
@@ -86,6 +89,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Skydome.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="billboard.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="billboard.vertex">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

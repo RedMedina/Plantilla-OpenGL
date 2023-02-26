@@ -152,6 +152,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Billboards.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Load3dmodel.h" />
@@ -167,6 +168,8 @@
     <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="billboard.fragment" />
+    <None Include="billboard.vertex" />
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />
     <None Include="Skydome.fragment" />
