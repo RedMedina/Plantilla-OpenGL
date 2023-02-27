@@ -142,5 +142,8 @@
     <None Include="Grass.fragment">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Grass.geom">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

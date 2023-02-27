@@ -10,7 +10,7 @@ public:
 
 		shader = new Shader();
 		programID = shader->LoadShaders(vertexShader, fragmentShader);
-
+		TextureLoad = new LoadTexture;
 		// Vertex shader
 		CameraRight_worldspace_ID = glGetUniformLocation(programID, "CameraRight_worldspace");
 		CameraUp_worldspace_ID = glGetUniformLocation(programID, "CameraUp_worldspace");
@@ -21,10 +21,11 @@ public:
 		/*Valores para el pasto con viento*/
 		IDtime = glGetUniformLocation(programID, "Time");
 		idWindDir = glGetUniformLocation(programID, "WindDirection");
+		//TextureID2 = glGetUniformLocation(programID, "blendMap");
+		//Texture2 = TextureLoad->LoadAnyTexture(Blendmap);
 		/*----------------------------------------------------------*/
 
 		TextureID = glGetUniformLocation(programID, "myTextureSampler");
-		TextureLoad = new LoadTexture;
 		Texture = TextureLoad->LoadAnyTexture(Textura);
 
 		// The VBO containing the 4 vertices of the particles.
@@ -65,6 +66,11 @@ public:
 		glUniform1f(IDtime, TiempoValor);
 		glm::vec2 DireccionViento = glm::vec2(1, 1);
 		glUniform2f(idWindDir, DireccionViento.x, DireccionViento.y);
+		// Bind our texture in Texture Unit 0
+		//glActiveTexture(GL_TEXTURE1);
+		//glBindTexture(GL_TEXTURE_2D, Texture2);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		//glUniform1i(TextureID, 1);
 		/*----------------------------------------------------------*/
 
 
@@ -114,8 +120,8 @@ private:
 	GLuint BillboardPosID;
 	GLuint BillboardSizeID;
 	GLuint LifeLevelID;
-	GLuint TextureID;
-	GLuint Texture;
+	GLuint TextureID, TextureID2;
+	GLuint Texture, Texture2;
 	LoadTexture* TextureLoad;
 	GLuint billboard_vertex_buffer;
 	GLuint VertexArrayID;

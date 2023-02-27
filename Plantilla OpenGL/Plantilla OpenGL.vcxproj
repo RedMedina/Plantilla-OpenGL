@@ -180,6 +180,7 @@
     <None Include="Clouds.fragment" />
     <None Include="Clouds.vertex" />
     <None Include="Grass.fragment" />
+    <None Include="Grass.geom" />
     <None Include="Grass.vertex" />
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />

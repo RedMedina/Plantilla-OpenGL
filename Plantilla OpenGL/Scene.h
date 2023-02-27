@@ -56,19 +56,22 @@ public:
 		skydome->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, window, DayTransicionDuration);
 		Nubes->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration);
 
-		/*Carga los modelos*/                                                              //Posicion       Escala     Rotacion
-		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, 1, 1), vec3(1,1,1),  0, DayTransicionDuration);
+		/*Carga los modelos*/                                                              //Posicion                                                          Escala     Rotacion
+		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), vec3(1,1,1),  0, DayTransicionDuration);
 		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
 		
 		/*Modelos para desbugear el Terreno*/
 		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, -200, 10), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga el Terreno*/
 		Terreno->SetRenderSize(300.0f, 75.0f, 300.0f);
-		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelMatrix, DayTransicionDuration);
+		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelMatrix, DayTransicionDuration, position);
+		/*Se coloca en la varible Y_Position la posción del Y del terreno apartir de la posición de la camara*/
+		Y_Position = Terreno->GetHeightFromRealVector(position) + 3.0f;
 
-		/*Carga los billboards*/                               //Posicion       Escala
-		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, 1.6f, 1), vec2(1, 1));
-		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, 1.6f, 1), vec2(1, 1));
+		/*Carga los billboards*/                              //Posicion  Esta función me dice que altura es la del terreno en esas coords Escala
+		                                                           //X                            Y                            Z
+		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)), 1), vec2(1, 1));
+		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, Terreno->GetHeightFromRealVector(glm::vec3(-8, 0, 1)), 1), vec2(1, 1));
 
 		/*Revisa si se dibujó el objeto*/
 		if (init < 1)
@@ -76,6 +79,12 @@ public:
 			cout << "Scene cargada totalmente!" << endl;
 		}
 		init++;
+	}
+
+	float Get_YPosition()
+	{
+		/*Se envia la variable a main.cpp*/
+		return Y_Position;
 	}
 
 	~Scene()
@@ -100,9 +109,9 @@ private:
 	Billboards* Pasto;
 	Water* Agua;
 	Clouds* Nubes;
+	float DayTransicionDuration = 0.00005f;
 	Terrain* Terreno;
-
-	float DayTransicionDuration = 0.0005f;
+	float Y_Position = 0;
 };
 
 #endif

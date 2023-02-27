@@ -19,7 +19,7 @@ public:
 
 	Terrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
 	{
-	//	InitTerrainWithModel(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
+		//	InitTerrainWithModel(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
 		CreateTerrain(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
 	}
 
@@ -125,11 +125,23 @@ public:
 		IDMix = glGetUniformLocation(programID, "time");
 
 		IdHeight = glGetUniformLocation(programID, "HeightmapScaleMatrix");
+
+		/*Grass---------------------------------------------------------
+		GrassShader = new Shader();
+		GrassShaderID = GrassShader->LoadSGeometryhaders("Grass.vertex", "Grass.fragment", "Grass.geom");
+		LoadGrassTexture = new LoadTexture();
+		GrassTextura = LoadGrassTexture->LoadDDS("Assets/Terreno/grassPack.dds");
+		GraddTexturaID = glGetUniformLocation(programID, "gSampler");
+		ProyeccionIDGrass = glGetUniformLocation(programID, "projMatrix");
+		ModeloIDGrass = glGetUniformLocation(programID, "modelMatrix");
+		VistaIDGrass = glGetUniformLocation(programID, "viewMatrix");
+		IDTiempoPasado = glGetUniformLocation(programID, "fTimePassed");
+		IDPosicionGrass = glGetUniformLocation(programID, "vEyePosition");
 		/*--------------------------------------------------------------*/
 
 		vboHeightmapData.CreateVBO();
 		// All vertex data are here (there are iRows*iCols vertices in this heightmap), we will get to normals later
-		vector< vector< glm::vec3> > vVertexData(iRows, vector<glm::vec3>(iCols));
+		vVertexData = vector< vector< glm::vec3> >(iRows, vector<glm::vec3>(iCols));
 		vector< vector< glm::vec2> > vCoordsData(iRows, vector<glm::vec2>(iCols));
 
 		float fTextureU = float(iCols) * 0.1f;
@@ -200,7 +212,7 @@ public:
 			vFinalNormals[i][j] = vFinalNormal; // Store final normal of j-th vertex in i-th row
 		}
 		// First, create a VBO with only vertex data
-		vboHeightmapData.CreateVBO(iRows* iCols* (2 * sizeof(glm::vec3) + sizeof(glm::vec2))); // Preallocate memory
+		vboHeightmapData.CreateVBO(iRows * iCols * (2 * sizeof(glm::vec3) + sizeof(glm::vec2))); // Preallocate memory
 		FOR(i, iRows)
 		{
 			FOR(j, iCols)
@@ -235,11 +247,52 @@ public:
 		// Here don't forget to bind another type of VBO - the element array buffer, or simplier indices to vertices
 		vboHeightmapIndices.BindVBO(GL_ELEMENT_ARRAY_BUFFER);
 		//vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW);
+
+
+		/*---------------------------------------------------
+		vboGrassData.CreateVBO();
+
+		float fGrassPatchOffsetMin = 1.5f;
+		float fGrassPatchOffsetMax = 2.5f;
+		float fGrassPatchHeight = 5.0f;
+
+		glm::vec3 vCurPatchPos(-vRenderScale.x * 0.5f + fGrassPatchOffsetMin, 0.0f, vRenderScale.z * 0.5f - fGrassPatchOffsetMin);
+
+		iNumGrassTriangles = 0;
+
+		while (vCurPatchPos.x < vRenderScale.x * 0.5f)
+		{
+			vCurPatchPos.z = vRenderScale.z * 0.5f - fGrassPatchOffsetMin;
+
+			while (vCurPatchPos.z > -vRenderScale.z * 0.5f)
+			{
+				vCurPatchPos.y = GetHeightFromRealVector(vCurPatchPos) - 0.3f;
+				vboGrassData.AddData(&vCurPatchPos, sizeof(glm::vec3));
+
+				iNumGrassTriangles += 1;
+
+				vCurPatchPos.z -= fGrassPatchOffsetMin + (fGrassPatchOffsetMax - fGrassPatchOffsetMin) * float(rand() % 1000) * 0.001f;
+			}
+
+			vCurPatchPos.x += fGrassPatchOffsetMin + (fGrassPatchOffsetMax - fGrassPatchOffsetMin) * float(rand() % 1000) * 0.001f;
+		}
+
+		glGenVertexArrays(1, &uiGrassVAO);
+		glBindVertexArray(uiGrassVAO);
+		// Attach vertex data to this VAO
+		vboGrassData.BindVBO();
+		vboGrassData.UploadDataToGPU(GL_STATIC_DRAW);
+
+		// Vertex positions
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), 0);
+		//--------------------------------------------------- */
+
 		bLoaded = true; // If get here, we succeeded with generating heightmap
 		return true;
 	}
 
-	void Render(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::mat4 Model, float DayTransicionDuration)
+	void Render(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::mat4 Model, float DayTransicionDuration, glm::vec3 position)
 	{
 		glDisable(GL_CULL_FACE);
 		// Use our shader
@@ -323,8 +376,23 @@ public:
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(AlturaID, 4);
 
-		if (unoA<1) { vboHeightmapData.UploadDataToGPU(GL_STATIC_DRAW); }
-		if (unoA<1) { vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW); }
+		/*Grass----------------------------------------------------------------------/
+		glUseProgram(GrassShaderID);
+		glUniformMatrix4fv(ProyeccionIDGrass, 1, GL_FALSE, &u_ProjectionMatrix[0][0]);
+		glUniformMatrix4fv(ModeloIDGrass, 1, GL_FALSE, &Model[0][0]);
+		glUniformMatrix4fv(VistaIDGrass, 1, GL_FALSE, &ViewMatrix[0][0]);
+		glUniform3f(IDPosicionGrass, position.x, position.y, position.z);
+		glActiveTexture(GL_TEXTURE5);
+		glBindTexture(GL_TEXTURE_2D, GrassTextura);
+		glUniform1i(GraddTexturaID, 5);
+		//---------------------------------------------------------------------------*/
+
+		if (unoA < 1) {
+			vboHeightmapData.UploadDataToGPU(GL_STATIC_DRAW);
+		}
+		if (unoA < 1) {
+			vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW);
+		}
 
 		// Vertex positions
 		glEnableVertexAttribArray(0);
@@ -336,7 +404,7 @@ public:
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3) + sizeof(glm::vec2), (void*)(sizeof(glm::vec3) + sizeof(glm::vec2)));
 
-		
+
 		unoA++;
 		glBindVertexArray(uiVAO);
 		glEnable(GL_PRIMITIVE_RESTART);
@@ -346,6 +414,9 @@ public:
 		glDrawElements(GL_TRIANGLE_STRIP, iNumIndices, GL_UNSIGNED_INT, 0);
 
 		glEnable(GL_CULL_FACE);
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
 	}
 
 	void SetRenderSize(float fRenderX, float fHeight, float fRenderZ)
@@ -353,6 +424,19 @@ public:
 		vRenderScale = glm::vec3(fRenderX, fHeight, fRenderZ);
 	}
 
+	float GetHeightFromRealVector(glm::vec3 vRealPosition)
+	{
+		int iColumn = int((vRealPosition.x + vRenderScale.x * 0.5f) * float(iCols) / (vRenderScale.x));
+		int iRow = int((vRealPosition.z + vRenderScale.z * 0.5f) * float(iRows) / (vRenderScale.z));
+
+		iColumn = glm::min(iColumn, iCols - 1);
+		iRow = glm::min(iRow, iRows - 1);
+
+		iColumn = glm::max(iColumn, 0);
+		iRow = glm::max(iRow, 0);
+
+		return vVertexData[iRow][iColumn].y * vRenderScale.y;
+	}
 
 	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, float DayTransicionDuration)
 	{
@@ -477,14 +561,15 @@ public:
 	}
 
 private:
-	GLuint uiVAO, MVID, ModelID;
-	GLuint VertexArrayID, programID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID, IdHeight;
-	Shader* shader;
-	LoadTexture* Texture;
+	GLuint uiVAO, MVID, ModelID, uiGrassVAO;
+	GLuint VertexArrayID, programID, GrassShaderID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID, IdHeight, GrassTextura, GraddTexturaID, ModeloIDGrass, VistaIDGrass, ProyeccionIDGrass, IDTiempoPasado, IDPosicionGrass;
+	Shader* shader, *GrassShader;
+	LoadTexture* Texture, *LoadGrassTexture;
 	Load3dModel* modelLoad;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
+	vector<vector<glm::vec3>>vVertexData;
 	GLuint vertexbuffer;
 	GLuint uvbuffer;
 	GLuint Altura, AlturaID, IDMix;
@@ -497,4 +582,7 @@ private:
 	CVertexBufferObject vboHeightmapData;
 	CVertexBufferObject vboHeightmapIndices;
 	int unoA = 0;
+	CVertexBufferObject vboGrassData;
+	int iNumGrassTriangles;
+	float fTimePassed;
 };

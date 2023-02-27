@@ -28,7 +28,7 @@ float verticalAngle = 0.0f;
 // Initial Field of View
 float initialFoV = 45.0f;
 
-float speed = 15.0f; // 3 units / second
+float speed = 18.0f; // 3 units / second
 float mouseSpeed = 0.005f;
 bool isMouseEnabled = true;
 
@@ -181,6 +181,7 @@ int main(void)
 		
 		//Renderiza el juego
 		MainScene->Render(window, MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, position);
+		position.y = MainScene->Get_YPosition();
 
 		//Frames
 		frames++;
