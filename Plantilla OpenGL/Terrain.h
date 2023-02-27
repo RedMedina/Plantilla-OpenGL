@@ -1,8 +1,29 @@
+#include <FreeImage.h>
+#include "LoadTexture.h"
+#include "Load3dmodel.h"
+#include "vertexBufferObject.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/norm.hpp>
+#define FOR(q,n) for(int q=0;q<n;q++)
+#define SFOR(q,s,e) for(int q=s;q<=e;q++)
+#define RFOR(q,n) for(int q=n;q>=0;q--)
+#define RSFOR(q,s,e) for(int q=s;q>=e;q--)
+
+#define ESZ(elem) (int)elem.size()
+
 class Terrain
 {
 public:
 
 	Terrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
+	{
+	//	InitTerrainWithModel(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
+		CreateTerrain(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
+	}
+
+	void InitTerrainWithModel(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
 	{
 		glGenVertexArrays(1, &VertexArrayID);
 		glBindVertexArray(VertexArrayID);
@@ -40,6 +61,298 @@ public:
 		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 	}
+
+	bool CreateTerrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
+	{
+		if (bLoaded)
+		{
+			bLoaded = false;
+			//ReleaseHeightmap();
+		}
+		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+		FIBITMAP* dib(0);
+
+		fif = FreeImage_GetFileType(Alturas, 0); // Check the file signature and deduce its format
+
+		if (fif == FIF_UNKNOWN) // If still unknown, try to guess the file format from the file extension
+			fif = FreeImage_GetFIFFromFilename(Alturas);
+
+		if (fif == FIF_UNKNOWN) // If still unknown, return failure
+			return false;
+
+		if (FreeImage_FIFSupportsReading(fif)) // Check if the plugin has reading capabilities and load the file
+			dib = FreeImage_Load(fif, Alturas);
+		if (!dib)
+			return false;
+
+		BYTE* bDataPointer = FreeImage_GetBits(dib); // Retrieve the image data
+		iRows = FreeImage_GetHeight(dib);
+		iCols = FreeImage_GetWidth(dib);
+
+		// We also require our image to be either 24-bit (classic RGB) or 8-bit (luminance)
+		if (bDataPointer == NULL || iRows == 0 || iCols == 0 || (FreeImage_GetBPP(dib) != 24 && FreeImage_GetBPP(dib) != 8))
+			return false;
+
+		// How much to increase data pointer to get to next pixel data
+		unsigned int ptr_inc = FreeImage_GetBPP(dib) == 24 ? 3 : 1;
+		// Length of one row in data
+		unsigned int row_step = ptr_inc * iCols;
+
+		/*Shader Program*/
+		shader = new Shader;
+		programID = shader->LoadShaders(vertexShader, fragmentShader);
+		MatrixID = glGetUniformLocation(programID, "MVP");
+
+		MVID = glGetUniformLocation(programID, "MV");
+		ModelID = glGetUniformLocation(programID, "Model");
+
+		Texture = new LoadTexture();
+		textura1 = Texture->LoadAnyTexture(Textura1);
+		Textura1ID = glGetUniformLocation(programID, "Texture1");
+
+		textura2 = Texture->LoadAnyTexture(Textura2);
+		Textura2ID = glGetUniformLocation(programID, "Texture2");
+
+		textura3 = Texture->LoadAnyTexture(Textura3);
+		Textura3ID = glGetUniformLocation(programID, "Texture3");
+
+		blendmap = Texture->LoadAnyTexture(Blendmap);
+		blendmap3ID = glGetUniformLocation(programID, "Blendmap");
+
+		Altura = Texture->LoadAnyTexture(Alturas);
+		AlturaID = glGetUniformLocation(programID, "heightmap");
+
+		IDMix = glGetUniformLocation(programID, "time");
+
+		IdHeight = glGetUniformLocation(programID, "HeightmapScaleMatrix");
+		/*--------------------------------------------------------------*/
+
+		vboHeightmapData.CreateVBO();
+		// All vertex data are here (there are iRows*iCols vertices in this heightmap), we will get to normals later
+		vector< vector< glm::vec3> > vVertexData(iRows, vector<glm::vec3>(iCols));
+		vector< vector< glm::vec2> > vCoordsData(iRows, vector<glm::vec2>(iCols));
+
+		float fTextureU = float(iCols) * 0.1f;
+		float fTextureV = float(iRows) * 0.1f;
+
+		FOR(i, iRows)
+		{
+			FOR(j, iCols)
+			{
+				float fScaleC = float(j) / float(iCols - 1);
+				float fScaleR = float(i) / float(iRows - 1);
+				float fVertexHeight = float(*(bDataPointer + row_step * i + j * ptr_inc)) / 255.0f;
+				vVertexData[i][j] = glm::vec3(-0.5f + fScaleC, fVertexHeight, -0.5f + fScaleR);
+				vCoordsData[i][j] = glm::vec2(fTextureU * fScaleC, fTextureV * fScaleR);
+			}
+		}
+
+		vector< vector<glm::vec3> > vNormals[2];
+		FOR(i, 2)vNormals[i] = vector< vector<glm::vec3> >(iRows - 1, vector<glm::vec3>(iCols - 1));
+
+		FOR(i, iRows - 1)
+		{
+			FOR(j, iCols - 1)
+			{
+				glm::vec3 vTriangle0[] =
+				{
+					vVertexData[i][j],
+					vVertexData[i + 1][j],
+					vVertexData[i + 1][j + 1]
+				};
+				glm::vec3 vTriangle1[] =
+				{
+					vVertexData[i + 1][j + 1],
+					vVertexData[i][j + 1],
+					vVertexData[i][j]
+				};
+
+				glm::vec3 vTriangleNorm0 = glm::cross(vTriangle0[0] - vTriangle0[1], vTriangle0[1] - vTriangle0[2]);
+				glm::vec3 vTriangleNorm1 = glm::cross(vTriangle1[0] - vTriangle1[1], vTriangle1[1] - vTriangle1[2]);
+
+				vNormals[0][i][j] = glm::normalize(vTriangleNorm0);
+				vNormals[1][i][j] = glm::normalize(vTriangleNorm1);
+			}
+		}
+		vector< vector<glm::vec3> > vFinalNormals = vector< vector<glm::vec3> >(iRows, vector<glm::vec3>(iCols));
+
+		FOR(i, iRows)
+			FOR(j, iCols)
+		{
+			// Now we wanna calculate final normal for [i][j] vertex. We will have a look at all triangles this vertex is part of, and then we will make average vector
+			// of all adjacent triangles' normals
+
+			glm::vec3 vFinalNormal = glm::vec3(0.0f, 0.0f, 0.0f);
+
+			// Look for upper-left triangles
+			if (j != 0 && i != 0)
+				FOR(k, 2)vFinalNormal += vNormals[k][i - 1][j - 1];
+			// Look for upper-right triangles
+			if (i != 0 && j != iCols - 1)vFinalNormal += vNormals[0][i - 1][j];
+			// Look for bottom-right triangles
+			if (i != iRows - 1 && j != iCols - 1)
+				FOR(k, 2)vFinalNormal += vNormals[k][i][j];
+			// Look for bottom-left triangles
+			if (i != iRows - 1 && j != 0)
+				vFinalNormal += vNormals[1][i][j - 1];
+			vFinalNormal = glm::normalize(vFinalNormal);
+
+			vFinalNormals[i][j] = vFinalNormal; // Store final normal of j-th vertex in i-th row
+		}
+		// First, create a VBO with only vertex data
+		vboHeightmapData.CreateVBO(iRows* iCols* (2 * sizeof(glm::vec3) + sizeof(glm::vec2))); // Preallocate memory
+		FOR(i, iRows)
+		{
+			FOR(j, iCols)
+			{
+				vboHeightmapData.AddData(&vVertexData[i][j], sizeof(glm::vec3)); // Add vertex
+				vboHeightmapData.AddData(&vCoordsData[i][j], sizeof(glm::vec2)); // Add tex. coord
+				vboHeightmapData.AddData(&vFinalNormals[i][j], sizeof(glm::vec3)); // Add normal
+			}
+		}
+		// Now create a VBO with heightmap indices
+		vboHeightmapIndices.CreateVBO();
+		int iPrimitiveRestartIndex = iRows * iCols;
+		FOR(i, iRows - 1)
+		{
+			FOR(j, iCols)
+				FOR(k, 2)
+			{
+				int iRow = i + (1 - k);
+				int iIndex = iRow * iCols + j;
+				vboHeightmapIndices.AddData(&iIndex, sizeof(int));
+			}
+			// Restart triangle strips
+			vboHeightmapIndices.AddData(&iPrimitiveRestartIndex, sizeof(int));
+		}
+
+		glGenVertexArrays(1, &uiVAO);
+		glBindVertexArray(uiVAO);
+		// Attach vertex data to this VAO
+		vboHeightmapData.BindVBO();
+		//vboHeightmapData.UploadDataToGPU(GL_STATIC_DRAW);
+		// And now attach index data to this VAO
+		// Here don't forget to bind another type of VBO - the element array buffer, or simplier indices to vertices
+		vboHeightmapIndices.BindVBO(GL_ELEMENT_ARRAY_BUFFER);
+		//vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW);
+		bLoaded = true; // If get here, we succeeded with generating heightmap
+		return true;
+	}
+
+	void Render(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::mat4 Model, float DayTransicionDuration)
+	{
+		glDisable(GL_CULL_FACE);
+		// Use our shader
+		glUseProgram(programID);
+		glm::mat4 HeightT = glm::scale(glm::mat4(1.0), glm::vec3(vRenderScale));
+		glUniformMatrix4fv(IdHeight, 1, GL_FALSE, &HeightT[0][0]);
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+		glm::mat4 MV = ViewMatrix * Model;
+		glUniformMatrix4fv(MVID, 1, GL_FALSE, &MV[0][0]);
+		glUniformMatrix4fv(ModelID, 1, GL_FALSE, &Model[0][0]);
+
+		//Lights
+		if (SkyB) {
+			if (Sky > 0.8f && Sky <= 1)
+			{
+				Sky += DayTransicionDuration * 3.0f;
+			}
+			else if (Sky > 0.2 && Sky < 0.8)
+			{
+				Sky += DayTransicionDuration * 5.0f;
+			}
+			else if (Sky < 0.2 && Sky >= 0)
+			{
+				Sky += DayTransicionDuration;
+			}
+		}
+		else {
+			if (Sky > 0.8f && Sky <= 1.0f)
+			{
+				Sky -= DayTransicionDuration * 3.0f;
+			}
+			else if (Sky > 0.2f && Sky < 0.8f)
+			{
+				Sky -= DayTransicionDuration * 5.0f;
+			}
+			else if (Sky < 0.2 && Sky >= 0)
+			{
+				Sky -= DayTransicionDuration;
+			}
+		}
+
+		if (Sky < 0.0) {
+			Sky = 0.0f;
+			SkyB = true;
+		}
+		else if (Sky > 1.0f) {
+
+			Sky = 1.0f;
+			SkyB = false;
+		}
+		glUniform1f(IDMix, Sky);
+
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, textura1);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura1ID, 0);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, textura2);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura2ID, 1);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, textura3);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura3ID, 2);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, blendmap);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(blendmap3ID, 3);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE4);
+		glBindTexture(GL_TEXTURE_2D, Altura);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(AlturaID, 4);
+
+		if (unoA<1) { vboHeightmapData.UploadDataToGPU(GL_STATIC_DRAW); }
+		if (unoA<1) { vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW); }
+
+		// Vertex positions
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3) + sizeof(glm::vec2), 0);
+		// Texture coordinates
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3) + sizeof(glm::vec2), (void*)sizeof(glm::vec3));
+		// Normal vectors
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3) + sizeof(glm::vec2), (void*)(sizeof(glm::vec3) + sizeof(glm::vec2)));
+
+		
+		unoA++;
+		glBindVertexArray(uiVAO);
+		glEnable(GL_PRIMITIVE_RESTART);
+		glPrimitiveRestartIndex(iRows * iCols);
+
+		int iNumIndices = (iRows - 1) * iCols * 2 + iRows - 1;
+		glDrawElements(GL_TRIANGLE_STRIP, iNumIndices, GL_UNSIGNED_INT, 0);
+
+		glEnable(GL_CULL_FACE);
+	}
+
+	void SetRenderSize(float fRenderX, float fHeight, float fRenderZ)
+	{
+		vRenderScale = glm::vec3(fRenderX, fHeight, fRenderZ);
+	}
+
 
 	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, float DayTransicionDuration)
 	{
@@ -164,7 +477,8 @@ public:
 	}
 
 private:
-	GLuint VertexArrayID, programID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID;
+	GLuint uiVAO, MVID, ModelID;
+	GLuint VertexArrayID, programID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID, IdHeight;
 	Shader* shader;
 	LoadTexture* Texture;
 	Load3dModel* modelLoad;
@@ -176,4 +490,11 @@ private:
 	GLuint Altura, AlturaID, IDMix;
 	float Sky = 0.0f;
 	bool SkyB = true;
+	int iRows;
+	int iCols;
+	bool bLoaded;
+	glm::vec3 vRenderScale;
+	CVertexBufferObject vboHeightmapData;
+	CVertexBufferObject vboHeightmapIndices;
+	int unoA = 0;
 };

@@ -1,7 +1,10 @@
 #version 330 core
 
 // Interpolated values from the vertex shaders
-in vec2 UV;
+smooth in vec2 UV;
+smooth in vec3 vNormal;
+smooth in vec3 vWorldPos;
+smooth in vec4 vEyeSpacePos;
 
 // Ouput data
 out vec4 FragColor;
@@ -19,13 +22,14 @@ uniform float time;
 
 void main()
 {
-     vec4 blendData = texture2D( Blendmap, UV );
+     vec4 blendData = texture2D( Blendmap, UV/51.2f);
      float vBlendr = blendData.r;
      float vBlendg = blendData.g;
      float vBlendb = blendData.b;
-     vec4 color1 = vBlendr * texture2D( Texture1, UV * 25.0 );
-     vec4 color2 = vBlendg * texture2D( Texture2, UV * 25.0 );
-     vec4 color3 = vBlendb * texture2D( Texture3, UV * 25.0 );
+     vec2 UvsColor1 = vec2(UV.x, UV.y);
+     vec4 color1 = vBlendr * texture2D( Texture1, UvsColor1/3);
+     vec4 color2 = vBlendg * texture2D( Texture2, UV);
+     vec4 color3 = vBlendb * texture2D( Texture3, UV);
 
      vec3 color1a = vec3(0.75, 0.75, 0.75); // Primer color de transición (celeste)
      vec3 color2b = vec3(1.0, 0.5, 0.2); // Segundo color de transición (naranja)

@@ -3,18 +3,28 @@
 // Input vertex data, different for all executions of this shader.
 layout(location = 0) in vec3 vertexPosition_modelspace;
 layout(location = 1) in vec2 vertexUV;
+layout (location = 2) in vec3 inNormal;
 
 // Output data ; will be interpolated for each fragment.
-out vec2 UV;
+smooth out vec2 UV;
+smooth out vec3 vNormal;
+smooth out vec3 vWorldPos;
+smooth out vec4 vEyeSpacePos;
 
 // Values that stay constant for the whole mesh.
 uniform mat4 MVP;
+uniform mat4 HeightmapScaleMatrix;
+uniform mat4 MV;
+uniform mat4 Model;
 
 void main(){
-
+	vec4 inPositionScaled = HeightmapScaleMatrix*vec4(vertexPosition_modelspace, 1.0);
 	// Output position of the vertex, in clip space : MVP * position
-	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
-	
+	gl_Position =  MVP * inPositionScaled;
+	vEyeSpacePos = MV*vec4(vertexPosition_modelspace, 1.0);
 	// UV of the vertex. No special space for this one.
 	UV = vertexUV;
+	vNormal = inNormal;
+	 vec4 vWorldPosLocal = Model*inPositionScaled;
+	 vWorldPos = vWorldPosLocal.xyz;
 }

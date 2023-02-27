@@ -3,10 +3,10 @@
 
 #include "Modelo3D.h"
 #include "Water.h"
-#include "Terrain.h"
 #include "Billboards.h"
 #include "skybox.h"
 #include "Clouds.h"
+#include "Terrain.h"
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "Lights.h"
@@ -39,10 +39,10 @@ public:
 		
 		/*Billboards*/
 		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png");
-		Pasto = new Billboards("Grass.vertex", "Grass.fragment", "Assets/Billboards/grass7.png");
+		Pasto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/grass7.png");
 
 		/*Terreno*/
-		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Pasto.jpg", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/Tierra_2.png", "Assets/Terreno/Blendmap_Pradera.png", "Assets/Terreno/Alturas.png");
+		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/Pasto.jpg", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
 	}
 
 	void Render(GLFWwindow* window , glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position)
@@ -58,15 +58,17 @@ public:
 
 		/*Carga los modelos*/                                                              //Posicion       Escala     Rotacion
 		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, 1, 1), vec3(1,1,1),  0, DayTransicionDuration);
-		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, 2, 10), vec3(1,1,1), 0, DayTransicionDuration);
-		
 		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
-
+		
+		/*Modelos para desbugear el Terreno*/
+		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, -200, 10), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga el Terreno*/
-		Terreno->Draw(MVP, ViewMatrix, ProjectionMatrix, DayTransicionDuration);
+		Terreno->SetRenderSize(300.0f, 75.0f, 300.0f);
+		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelMatrix, DayTransicionDuration);
+
 		/*Carga los billboards*/                               //Posicion       Escala
-		//bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, 1.6f, 1), vec2(1, 1));
-		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, 1.6f, 1), vec2(1, 1));
+		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, 1.6f, 1), vec2(1, 1));
+		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, 1.6f, 1), vec2(1, 1));
 
 		/*Revisa si se dibujó el objeto*/
 		if (init < 1)
