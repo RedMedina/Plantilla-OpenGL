@@ -46,7 +46,7 @@ public:
         glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 	}
 
-    void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat4 ProjectionMatrix, GLFWwindow* window)
+    void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat4 ProjectionMatrix, GLFWwindow* window, float DayTransicionDuration)
     {
         // Deshabilitar culling de caras
         glDisable(GL_CULL_FACE);
@@ -72,24 +72,33 @@ public:
 
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
 
+        //Lights
         if (SkyB) {
-            if(Sky>0.66f)
+            if (Sky > 0.8f && Sky <= 1)
             {
-                Sky += 0.00009f * 3.0f;
+                Sky += DayTransicionDuration * 3.0f;
             }
-            else
+            else if (Sky > 0.2 && Sky < 0.8)
             {
-                Sky += 0.00009f;
+                Sky += DayTransicionDuration * 5.0f;
+            }
+            else if (Sky < 0.2 && Sky >= 0)
+            {
+                Sky += DayTransicionDuration;
             }
         }
         else {
-            if (Sky > 0.66f)
+            if (Sky > 0.8f && Sky <= 1)
             {
-                Sky -= 0.00009f * 3.0f;
+                Sky -= DayTransicionDuration * 3.0f;
             }
-            else
+            else if (Sky > 0.2 && Sky < 0.8)
             {
-                Sky -= 0.00009f;
+                Sky -= DayTransicionDuration * 5.0f;
+            }
+            else if (Sky < 0.2 && Sky >= 0)
+            {
+                Sky -= DayTransicionDuration;
             }
         }
 

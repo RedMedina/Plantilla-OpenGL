@@ -1,37 +1,36 @@
-#include "LoadTexture.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
-#include <glm/gtx/quaternion.hpp>
-#include <glm/gtx/euler_angles.hpp>
-#include <glm/gtx/norm.hpp>
-
-class Clouds
+class Terrain
 {
 public:
-	Clouds(const char* vertexShader, const char* fragmentShader, const char* NubesTextura)
+
+	Terrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
 	{
 		glGenVertexArrays(1, &VertexArrayID);
 		glBindVertexArray(VertexArrayID);
 
-		shaders = new Shader;
-		ProgramID = shaders->LoadShaders(vertexShader, fragmentShader);
+		shader = new Shader;
+		programID = shader->LoadShaders(vertexShader, fragmentShader);
+		MatrixID = glGetUniformLocation(programID, "MVP");
 
-		MatrixID = glGetUniformLocation(ProgramID, "MVP");
-		Offset = glGetUniformLocation(ProgramID, "textureOffset");
-		ProyeccionID = glGetUniformLocation(ProgramID, "viewProjMatrix");
+		Texture = new LoadTexture();
+		textura1 = Texture->LoadAnyTexture(Textura1);
+		Textura1ID = glGetUniformLocation(programID, "Texture1");
 
-		textura = new LoadTexture();
+		textura2 = Texture->LoadAnyTexture(Textura2);
+		Textura2ID = glGetUniformLocation(programID, "Texture2");
 
-		Texture = textura->LoadAnyTexture(NubesTextura);
-		TextureID = glGetUniformLocation(ProgramID, "cloudTexture");
+		textura3 = Texture->LoadAnyTexture(Textura3);
+		Textura3ID = glGetUniformLocation(programID, "Texture3");
 
-		Texture2 = textura->LoadAnyTexture("Assets/Skydome/perturb.png");
-		TextureID2 = glGetUniformLocation(ProgramID, "perturbTexture");
+		blendmap = Texture->LoadAnyTexture(Blendmap);
+		blendmap3ID = glGetUniformLocation(programID, "Blendmap");
 
-		IDMix = glGetUniformLocation(ProgramID, "time");
+		Altura = Texture->LoadAnyTexture(Alturas);
+		AlturaID = glGetUniformLocation(programID, "heightmap");
 
-		Model = new Load3dModel();
-		Model->loadOBJ("Assets/Skydome/Sky.obj", vertices, uvs, normals);
+		IDMix = glGetUniformLocation(programID, "time");
+
+		modelLoad = new Load3dModel();
+		modelLoad->loadOBJ("Assets/Terreno/Terreno.obj", vertices, uvs, normals);
 
 		glGenBuffers(1, &vertexbuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -42,23 +41,22 @@ public:
 		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 	}
 
-	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat4 ProjectionMatrix, float DayTransicionDuration)
+	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, float DayTransicionDuration)
 	{
-		glDisable(GL_CULL_FACE);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		// Use our shader
-		glUseProgram(ProgramID);
+		glUseProgram(programID);
 
 		// in the "MVP" uniform
 		glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), vec3(1, 1, 1));
-		glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), vec3(0, 500, 0)); // A bit to the left
-		glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), vec3(1 * 200, 1, 1 * 200));
+		glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), vec3(0, 0, 0)); // A bit to the left
+		glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), vec3(20, 1, 20));
 		glm::mat4 ModelMatrix2 = TranslationMatrix * RotationMatrix * ScalingMatrix;
 
-		glm::mat4 MVP2 = ProjectionMatrix * ViewMatrix * ModelMatrix2;
+		glm::mat4 MVP2 = u_ProjectionMatrix * ViewMatrix * ModelMatrix2;
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
-		glUniformMatrix4fv(ProyeccionID, 1, GL_FALSE, &ProjectionMatrix[0][0]);
+
 
 		//Lights
 		if (SkyB) {
@@ -76,11 +74,11 @@ public:
 			}
 		}
 		else {
-			if (Sky > 0.8f && Sky <= 1)
+			if (Sky > 0.8f && Sky <= 1.0f)
 			{
 				Sky -= DayTransicionDuration * 3.0f;
 			}
-			else if (Sky > 0.2 && Sky < 0.8)
+			else if (Sky > 0.2f && Sky < 0.8f)
 			{
 				Sky -= DayTransicionDuration * 5.0f;
 			}
@@ -101,20 +99,36 @@ public:
 		}
 		glUniform1f(IDMix, Sky);
 
-		IncrementOffset -= 0.0005f;
-		glUniform2f(Offset, OffsetPos.x, OffsetPos.y + IncrementOffset);
 
 		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, Texture);
+		glBindTexture(GL_TEXTURE_2D, textura1);
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
-		glUniform1i(TextureID, 0);
+		glUniform1i(Textura1ID, 0);
 
 		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, Texture2);
+		glBindTexture(GL_TEXTURE_2D, textura2);
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
-		glUniform1i(TextureID2, 1);
+		glUniform1i(Textura2ID, 1);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, textura3);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura3ID, 2);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, blendmap);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(blendmap3ID, 3);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE4);
+		glBindTexture(GL_TEXTURE_2D, Altura);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(AlturaID, 4);
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -145,25 +159,21 @@ public:
 
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
+
 		glDisable(GL_BLEND);
-		glEnable(GL_CULL_FACE);
 	}
 
 private:
-	GLuint VertexArrayID, ProgramID, MatrixID, Offset, ProyeccionID;
-	Shader* shaders;
-	LoadTexture* textura;
-	GLuint Texture, TextureID;
-	GLuint Texture2, TextureID2, IDMix;
-	Load3dModel* Model;
+	GLuint VertexArrayID, programID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID;
+	Shader* shader;
+	LoadTexture* Texture;
+	Load3dModel* modelLoad;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
 	GLuint vertexbuffer;
 	GLuint uvbuffer;
-	glm::vec2 OffsetPos = glm::vec2(10.1f, 20.2f);
-	float IncrementOffset = 0;
+	GLuint Altura, AlturaID, IDMix;
 	float Sky = 0.0f;
 	bool SkyB = true;
 };
-

@@ -6,11 +6,27 @@ out vec4 fragColor;
 uniform sampler2D cloudTexture;
 uniform sampler2D perturbTexture;
 uniform vec2 textureOffset;
+uniform float time;
 
 void main()
 {
     vec4 texColor = texture(cloudTexture, (UV*2) + textureOffset);
     float transparency = texColor.r; // Invertimos el valor del canal rojo de la textura para obtener la transparencia
-    vec3 cloudColor = vec3(1.0) * 5;
+ 
+    //vec3 cloudColor = vec3(1.0) * 5;
+    float transitionDuration = 3;
+
+    vec3 cloudColor;
+    vec3 color1 = vec3(0.9, 0.9, 0.9); // Primer color de transición (celeste)
+    vec3 color2 = vec3(1.0, 0.5, 0.2); // Segundo color de transición (naranja)
+    vec3 color3 = vec3(0.2, 0.2, 0.3); // Tercer color de transición (negro)
+
+    float t = mod(time, transitionDuration) / transitionDuration;
+    if (time < 0.5) {
+        cloudColor = mix(color1, color2, time * 2.0);
+    } else {
+        cloudColor = mix(color2, color3, (time - 0.5) * 2.0);
+    }
+
     fragColor = vec4(cloudColor, transparency);
 }

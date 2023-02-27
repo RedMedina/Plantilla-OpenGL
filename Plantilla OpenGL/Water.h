@@ -5,50 +5,29 @@
 class Water
 {
 public:
-	Water(const char* vertexShader, const char* fragmentShader, const char* texture, float ancho, float alto)
+	Water(const char* vertexShader, const char* fragmentShader, const char* texture, const char* Normales, float ancho, float alto)
 	{
-        vboIndex = new vboindexer();
-        tangent = new tangentspace();
-
         glGenVertexArrays(1, &VertexArrayID);
         glBindVertexArray(VertexArrayID);
 
         shader = new Shader;
         programID = shader->LoadShaders(vertexShader, fragmentShader);
-        // Get a handle for our "MVP" uniform
+
         MatrixID = glGetUniformLocation(programID, "MVP");
-        CameraIDPos = glGetUniformLocation(programID, "u_CameraPosition");
-        ModelMatrixID = glGetUniformLocation(programID, "u_ViewMatrix");
-        ProyectionID = glGetUniformLocation(programID, "u_ProjectionMatrix");
-        ModelVID = glGetUniformLocation(programID, "model");
+        Offset = glGetUniformLocation(programID, "textureOffset");
 
         Texture = new LoadTexture();
         TexturaAgua = Texture->LoadAnyTexture(texture);
-        NormalMap = Texture->LoadAnyTexture("Assets/Agua/AguaN.jpg");
+        TexturaAguaID = glGetUniformLocation(programID, "WaterTexture");
 
-        TexturaAguaID = glGetUniformLocation(programID, "u_Texture");
-        TexturNormalID = glGetUniformLocation(programID, "u_NormalMap");
+        NormalMap = Texture->LoadAnyTexture(Normales);
+        TexturNormalID = glGetUniformLocation(programID, "NormalTexture");
 
-        TexOff = glGetUniformLocation(programID, "u_TexOffset");
-        WaveOff = glGetUniformLocation(programID, "u_WaveOffset");
-
-        Lighpos = glGetUniformLocation(programID, "u_LightPosition");
-        Lightcolor = glGetUniformLocation(programID, "u_LightColor");
+        TimeID = glGetUniformLocation(programID, "time");
+        lightDirectionID = glGetUniformLocation(programID, "lightDirection");
 
         modelLoad = new Load3dModel();
-        bool res = modelLoad->loadOBJ("Assets/Agua/Agua.obj", vertices, uvs, normals);
-
-        std::vector<glm::vec3> tangents;
-        std::vector<glm::vec3> bitangents;
-        tangent->computeTangentBasis(
-            vertices, uvs, normals, // input
-            tangents, bitangents    // output
-        );
-
-        vboIndex->indexVBO_TBN(
-            vertices, uvs, normals, tangents, bitangents,
-            indices, indexed_vertices, indexed_uvs, indexed_normals, indexed_tangents, indexed_bitangents
-        );
+        modelLoad->loadOBJ("Assets/Agua/Agua.obj", vertices, uvs, normals);
 
         glGenBuffers(1, &vertexbuffer);
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -57,28 +36,6 @@ public:
         glGenBuffers(1, &uvbuffer);
         glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
         glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-
-        glGenBuffers(1, &normalbuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-        glBufferData(GL_ARRAY_BUFFER, indexed_normals.size() * sizeof(glm::vec3), &indexed_normals[0], GL_STATIC_DRAW);
-
-
-        glGenBuffers(1, &tangentbuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, tangentbuffer);
-        glBufferData(GL_ARRAY_BUFFER, indexed_tangents.size() * sizeof(glm::vec3), &indexed_tangents[0], GL_STATIC_DRAW);
-        
-        glGenBuffers(1, &bitangentbuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, bitangentbuffer);
-        glBufferData(GL_ARRAY_BUFFER, indexed_bitangents.size() * sizeof(glm::vec3), &indexed_bitangents[0], GL_STATIC_DRAW);
-
-        // Generate a buffer for the indices as well
-
-        glGenBuffers(1, &elementbuffer);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
-
-
-        glUseProgram(programID);
     }
 
     ~Water()
@@ -93,27 +50,29 @@ public:
 
     void Draw(glm::mat4 MVP, int init, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::vec3 position, glm::mat4 ModelMatrix)
     {
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
         // Use our shader
         glUseProgram(programID);
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-        glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMatrix[0][0]);
-        glUniformMatrix4fv(ProyectionID, 1, GL_FALSE, &u_ProjectionMatrix[0][0]);
-        glUniformMatrix4fv(ModelVID, 1, GL_FALSE, &ModelMatrix[0][0]);
-        glUniform3f(CameraIDPos, position.x, position.y, position.z);
+
+        // in the "MVP" uniform
+        glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), vec3(1, 1, 1));
+        glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), vec3(0, 3, 0)); // A bit to the left
+        glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), vec3(1, 1, 1));
+        glm::mat4 ModelMatrix2 = TranslationMatrix * RotationMatrix * ScalingMatrix;
+
+        glm::mat4 MVP2 = u_ProjectionMatrix * ViewMatrix * ModelMatrix2;
+        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
+
+        IncrementOffset -= 0.0005f;
+        glUniform2f(Offset, OffsetPos.x, OffsetPos.y + IncrementOffset);
+
+        Time += 0.5f;
+        glUniform1f(TimeID, OffsetPos.x + Time);
 
         glm::vec3 lightPos = glm::vec3(0, 0, 4);
-        glUniform3f(Lighpos, lightPos.x, lightPos.y, lightPos.z);
-
-        glm::vec3 lightColor = glm::vec3(1, 1, 1);
-        glUniform3f(Lightcolor, lightColor.x, lightColor.y, lightColor.z);
-
-        // Establecer el valor de la variable uniform "offset"
-        glm::vec2 offsetValue(0.5f, 0.5f);
-        glUniform2f(TexOff, offsetValue.x, offsetValue.y);
-
-        // Establecer el valor de la variable uniform "offset"
-        // glm::vec2 offsetValue(10.0f + init, 10.0f + init);
-        glUniform2f(WaveOff, offsetValue.x, offsetValue.y);
+        glUniform3f(lightDirectionID, lightPos.x, lightPos.y, lightPos.z);
 
         // Bind our texture in Texture Unit 0
         glActiveTexture(GL_TEXTURE0);
@@ -121,10 +80,10 @@ public:
         // Set our "myTextureSampler" sampler to user Texture Unit 0
         glUniform1i(TexturaAguaID, 0);
 
-        // Bind our normal texture in Texture Unit 1
+        // Bind our texture in Texture Unit 0
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, NormalMap);
-        // Set our "Normal	TextureSampler" sampler to user Texture Unit 0
+        // Set our "myTextureSampler" sampler to user Texture Unit 0
         glUniform1i(TexturNormalID, 1);
 
         // 1rst attribute buffer : vertices
@@ -151,97 +110,12 @@ public:
             (void*)0                          // array buffer offset
         );
 
-        // 3rd attribute buffer : normals
-        glEnableVertexAttribArray(2);
-        glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-        glVertexAttribPointer(
-            2,                                // attribute
-            3,                                // size
-            GL_FLOAT,                         // type
-            GL_FALSE,                         // normalized?
-            0,                                // stride
-            (void*)0                          // array buffer offset
-        );
-
-        // 4th attribute buffer : tangents
-        glEnableVertexAttribArray(3);
-        glBindBuffer(GL_ARRAY_BUFFER, tangentbuffer);
-        glVertexAttribPointer(
-            3,                                // attribute
-            3,                                // size
-            GL_FLOAT,                         // type
-            GL_FALSE,                         // normalized?
-            0,                                // stride
-            (void*)0                          // array buffer offset
-        );
-        // Index buffer
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-
-        // Draw the triangles !
-        glDrawElements(
-            GL_TRIANGLES,      // mode
-            indices.size(),    // count
-            GL_UNSIGNED_SHORT, // type
-            (void*)0           // element array buffer offset
-        );
+        // Draw the triangle !
+        glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
-        glDisableVertexAttribArray(2);
-        glDisableVertexAttribArray(3);
-
-        glMatrixMode(GL_PROJECTION);
-        glLoadMatrixf((const GLfloat*)&u_ProjectionMatrix[0]);
-        glMatrixMode(GL_MODELVIEW);
-        glm::mat4 MV = ViewMatrix * ModelMatrix;
-        glLoadMatrixf((const GLfloat*)&MV[0]);
-
-        glUseProgram(0);
-
-        glColor3f(0, 0, 1);
-        glBegin(GL_LINES);
-        for (unsigned int i = 0; i < indices.size(); i++) {
-            glm::vec3 p = indexed_vertices[indices[i]];
-            glVertex3fv(&p.x);
-            glm::vec3 o = glm::normalize(indexed_normals[indices[i]]);
-            p += o * 0.1f;
-            glVertex3fv(&p.x);
-        }
-        glEnd();
-        // tangents
-        glColor3f(1, 0, 0);
-        glBegin(GL_LINES);
-        for (unsigned int i = 0; i < indices.size(); i++) {
-            glm::vec3 p = indexed_vertices[indices[i]];
-            glVertex3fv(&p.x);
-            glm::vec3 o = glm::normalize(indexed_tangents[indices[i]]);
-            p += o * 0.1f;
-            glVertex3fv(&p.x);
-        }
-        glEnd();
-        // bitangents
-        glColor3f(0, 1, 0);
-        glBegin(GL_LINES);
-        for (unsigned int i = 0; i < indices.size(); i++) {
-            glm::vec3 p = indexed_vertices[indices[i]];
-            glVertex3fv(&p.x);
-            glm::vec3 o = glm::normalize(indexed_bitangents[indices[i]]);
-            p += o * 0.1f;
-            glVertex3fv(&p.x);
-        }
-        glEnd();
-        // light pos
-        glColor3f(1, 1, 1);
-        glBegin(GL_LINES);
-        glVertex3fv(&lightPos.x);
-        lightPos += glm::vec3(1, 0, 0) * 0.1f;
-        glVertex3fv(&lightPos.x);
-        lightPos -= glm::vec3(1, 0, 0) * 0.1f;
-        glVertex3fv(&lightPos.x);
-        lightPos += glm::vec3(0, 1, 0) * 0.1f;
-        glVertex3fv(&lightPos.x);
-        glEnd();
-
+        glDisable(GL_BLEND);
     }
 
 private:
@@ -250,7 +124,7 @@ private:
     GLuint programID;
     GLuint TexturaAgua;
     GLuint TexturaAguaID;
-    GLuint MatrixID;
+    GLuint MatrixID, TimeID, lightDirectionID;
     GLuint vertexbuffer;
     GLuint uvbuffer;
     Load3dModel* modelLoad;
@@ -259,7 +133,7 @@ private:
     std::vector<glm::vec3> normals;
     GLuint VertexArrayID;
     GLuint offsetLocation;
-    GLuint NormalMap, ViewMatrixID, ModelMatrixID, TexturNormalID, TexOff, WaveOff, Lighpos, Lightcolor;
+    GLuint NormalMap, ViewMatrixID, ModelMatrixID, TexturNormalID, TexOff, WaveOff, Lighpos, Lightcolor, Offset;
     vboindexer* vboIndex;
     tangentspace* tangent;
     std::vector<unsigned short> indices;
@@ -270,5 +144,7 @@ private:
     std::vector<glm::vec3> indexed_bitangents;
     GLuint normalbuffer;
     GLuint tangentbuffer, ProyectionID, CameraIDPos, ModelVID, bitangentbuffer, elementbuffer;
+    glm::vec2 OffsetPos = glm::vec2(10.1f, 20.2f);
+    float IncrementOffset = 0, Time = 0;
 };
 #endif

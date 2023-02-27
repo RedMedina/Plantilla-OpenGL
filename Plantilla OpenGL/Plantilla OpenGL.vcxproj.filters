@@ -68,6 +68,18 @@
     <ClInclude Include="Clouds.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Text2D.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorRR.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TransformVertexShader.vertexshader">
@@ -104,6 +116,24 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Clouds.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TextoUI.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TextoUI.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Terrain.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Terrain.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Grass.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Grass.fragment">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

@@ -3,6 +3,7 @@
 
 #include "Modelo3D.h"
 #include "Water.h"
+#include "Terrain.h"
 #include "Billboards.h"
 #include "skybox.h"
 #include "Clouds.h"
@@ -34,10 +35,14 @@ public:
 		ModeloCaja = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/normal.bmp");
 		
 		/*Agua*/
-		//Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaC.jpg", 50, 50);
+		Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaC.jpg", "Assets/Agua/AguaN.jpg", 50, 50);
 		
 		/*Billboards*/
 		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png");
+		Pasto = new Billboards("Grass.vertex", "Grass.fragment", "Assets/Billboards/grass7.png");
+
+		/*Terreno*/
+		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Pasto.jpg", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/Tierra_2.png", "Assets/Terreno/Blendmap_Pradera.png", "Assets/Terreno/Alturas.png");
 	}
 
 	void Render(GLFWwindow* window , glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position)
@@ -45,21 +50,23 @@ public:
 		/*Aqui se ejecutara todo el juego*/
 
 		// Borra el buffer de color
-		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		/*Carga el skydome*/
-		skydome->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, window);
-		Nubes->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix);
+		skydome->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, window, DayTransicionDuration);
+		Nubes->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration);
 
-		/*Carga los modelos*/                                                              //Posicion       Escala       Rotacion
-		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, 1, 1), vec3(1,1,1), vec3(1,1,1));
-		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, 1, 10), vec3(1,1,1), vec3(1,1,1));
+		/*Carga los modelos*/                                                              //Posicion       Escala     Rotacion
+		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, 1, 1), vec3(1,1,1),  0, DayTransicionDuration);
+		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, 2, 10), vec3(1,1,1), 0, DayTransicionDuration);
 		
-		//Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
+		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
 
-		/*Carga los billboards*/                 //Posicion       Escala
-		bill1->Draw(ViewMatrix, ProjectionMatrix, vec3(-5, 1, 1), vec2(1, 1));
+		/*Carga el Terreno*/
+		Terreno->Draw(MVP, ViewMatrix, ProjectionMatrix, DayTransicionDuration);
+		/*Carga los billboards*/                               //Posicion       Escala
+		//bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, 1.6f, 1), vec2(1, 1));
+		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, 1.6f, 1), vec2(1, 1));
 
 		/*Revisa si se dibujó el objeto*/
 		if (init < 1)
@@ -72,9 +79,13 @@ public:
 	~Scene()
 	{
 		/*Vaciamos la memoria del juego*/
-		//delete skydome;
+		delete skydome;
 		delete lights;
 		delete ModeloTest;
+		delete ModeloCaja;
+		delete bill1;
+		delete Nubes;
+		delete Pasto;
 		cout << "Memoria liberada." << endl;
 	}
 private:
@@ -84,8 +95,12 @@ private:
 	Modelo3D* ModeloTest;
 	Modelo3D* ModeloCaja;
 	Billboards* bill1;
+	Billboards* Pasto;
 	Water* Agua;
 	Clouds* Nubes;
+	Terrain* Terreno;
+
+	float DayTransicionDuration = 0.0005f;
 };
 
 #endif

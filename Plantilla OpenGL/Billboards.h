@@ -18,6 +18,10 @@ public:
 		BillboardPosID = glGetUniformLocation(programID, "BillboardPos");
 		BillboardSizeID = glGetUniformLocation(programID, "BillboardSize");
 		LifeLevelID = glGetUniformLocation(programID, "LifeLevel");
+		/*Valores para el pasto con viento*/
+		IDtime = glGetUniformLocation(programID, "Time");
+		idWindDir = glGetUniformLocation(programID, "WindDirection");
+		/*----------------------------------------------------------*/
 
 		TextureID = glGetUniformLocation(programID, "myTextureSampler");
 		TextureLoad = new LoadTexture;
@@ -36,7 +40,7 @@ public:
 		glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_DYNAMIC_DRAW);
 	}
 
-	void Draw(glm::mat4 ViewMatrix, glm::mat4 ProjectionMatrix, glm::vec3 position, glm::vec2 scala)
+	void Draw(glm::mat4 ViewMatrix, glm::mat4 ProjectionMatrix, glm::mat4 ModelMatrix, glm::vec3 position, glm::vec2 scala)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -49,18 +53,27 @@ public:
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(TextureID, 0);
 
-		glUniform3f(BillboardPosID, position.x, position.y, position.z); // The billboard will be just above the cube
+		glUniform3f(BillboardPosID, -position.x, -position.y, -position.z); // The billboard will be just above the cube
 		glUniform2f(BillboardSizeID, scala.x, scala.y);     // and 1m*12cm, because it matches its 256*32 resolution =)
 		
 														// Generate some fake life level and send it to glsl
 		float LifeLevel =  0.1f + 0.7f;
 		glUniform1f(LifeLevelID, LifeLevel);
 
+		/*Valores para el pasto con viento*/
+		TiempoValor += 1.0f;
+		glUniform1f(IDtime, TiempoValor);
+		glm::vec2 DireccionViento = glm::vec2(1, 1);
+		glUniform2f(idWindDir, DireccionViento.x, DireccionViento.y);
+		/*----------------------------------------------------------*/
+
+
 		glm::mat4 ViewProjectionMatrix = ProjectionMatrix * ViewMatrix;
 		glUniformMatrix4fv(ViewProjMatrixID, 1, GL_FALSE, &ViewProjectionMatrix[0][0]);
 
 		glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 		glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
+
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -106,4 +119,6 @@ private:
 	LoadTexture* TextureLoad;
 	GLuint billboard_vertex_buffer;
 	GLuint VertexArrayID;
+	GLuint IDtime, idWindDir, ModelID, ViewID, PryectID;
+	float TiempoValor = 1;
 };

@@ -1,0 +1,48 @@
+#version 330 core
+
+// Input vertex data, different for all executions of this shader.
+layout(location = 0) in vec3 squareVertices;
+
+// Output data ; will be interpolated for each fragment.
+out vec2 UV;
+
+// Values that stay constant for the whole mesh.
+uniform vec3 CameraRight_worldspace;
+uniform vec3 CameraUp_worldspace;
+uniform mat4 VP; // Model-View-Projection matrix, but without the Model (the position is in BillboardPos; the orientation depends on the camera)
+uniform vec3 BillboardPos; // Position of the center of the billboard
+uniform vec2 BillboardSize; // Size of the billboard, in world units (probably meters)
+
+// Values that change per frame for the whole mesh.
+//uniform vec2 WindDirection;
+uniform float Time;
+
+void main()
+{
+	float GrassHeight = 0.2f;
+	vec2 WindDirection = vec2(1.0f, 1.0f);
+	vec3 particleCenter_wordspace = BillboardPos;
+
+	// Add noise to the particle position to simulate grass movement
+    vec3 noise = vec3(
+        sin(particleCenter_wordspace.x * 0.1 + Time * 2.0),
+        cos(particleCenter_wordspace.z * 0.1 + Time * 2.0),
+        0.0
+    ) * GrassHeight * 0.5;
+	
+	vec3 vertexPosition_worldspace = 
+		particleCenter_wordspace 
+		+ CameraRight_worldspace * squareVertices.x * BillboardSize.x
+		+ CameraUp_worldspace * squareVertices.y * BillboardSize.y;
+
+	// Apply wind movement to the vertex
+    //vertexPosition_worldspace += vec3(WindDirection * Time, 0.0);
+
+	// Output position of the vertex
+	 gl_Position = VP * vec4(-vertexPosition_worldspace, 1.0f);
+
+	// UV of the vertex. No special space for this one.
+	UV = squareVertices.xy + vec2(0.5, 0.5);
+}
+
+

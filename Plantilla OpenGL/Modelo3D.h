@@ -99,7 +99,7 @@ public:
 		LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
 	}
 
-	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position, glm::vec3 scala, glm::vec3 rotation)
+	void Draw(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position, glm::vec3 scala, float rotation, float DayTransicionDuration)
 	{
 		// Use our shader
 		glUseProgram(programID);
@@ -127,23 +127,31 @@ public:
 
 		//Lights
 		if (SkyB) {
-			if (Sky > 0.66f)
+			if (Sky > 0.8f && Sky <= 1)
 			{
-				Sky += 0.00006f * 3.0f;
+				Sky += DayTransicionDuration * 3.0f;
 			}
-			else
+			else if(Sky > 0.2 && Sky < 0.8)
 			{
-				Sky += 0.00006f;
+				Sky += DayTransicionDuration * 5.0f;
+			}
+			else if (Sky < 0.2 && Sky >= 0)
+			{
+				Sky += DayTransicionDuration;
 			}
 		}
 		else {
-			if (Sky > 0.66f)
+			if (Sky > 0.8f && Sky <= 1)
 			{
-				Sky -= 0.00006f * 3.0f;
+				Sky -= DayTransicionDuration * 3.0f;
 			}
-			else
+			else if(Sky>0.2 && Sky < 0.8)
 			{
-				Sky -= 0.00006f;
+				Sky -= DayTransicionDuration * 5.0f;
+			}
+			else if(Sky<0.2 && Sky >= 0)
+			{
+				Sky -= DayTransicionDuration;
 			}
 		}
 
@@ -222,7 +230,7 @@ public:
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 
 		// in the "MVP" uniform
-		glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), rotation);
+		glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), vec3(1, 1, 1));
 		glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), position); // A bit to the left
 		glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), scala);
 		glm::mat4 ModelMatrix2 = TranslationMatrix * RotationMatrix * ScalingMatrix;
