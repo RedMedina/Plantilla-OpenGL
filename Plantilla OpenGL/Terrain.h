@@ -248,46 +248,6 @@ public:
 		vboHeightmapIndices.BindVBO(GL_ELEMENT_ARRAY_BUFFER);
 		//vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW);
 
-
-		/*---------------------------------------------------
-		vboGrassData.CreateVBO();
-
-		float fGrassPatchOffsetMin = 1.5f;
-		float fGrassPatchOffsetMax = 2.5f;
-		float fGrassPatchHeight = 5.0f;
-
-		glm::vec3 vCurPatchPos(-vRenderScale.x * 0.5f + fGrassPatchOffsetMin, 0.0f, vRenderScale.z * 0.5f - fGrassPatchOffsetMin);
-
-		iNumGrassTriangles = 0;
-
-		while (vCurPatchPos.x < vRenderScale.x * 0.5f)
-		{
-			vCurPatchPos.z = vRenderScale.z * 0.5f - fGrassPatchOffsetMin;
-
-			while (vCurPatchPos.z > -vRenderScale.z * 0.5f)
-			{
-				vCurPatchPos.y = GetHeightFromRealVector(vCurPatchPos) - 0.3f;
-				vboGrassData.AddData(&vCurPatchPos, sizeof(glm::vec3));
-
-				iNumGrassTriangles += 1;
-
-				vCurPatchPos.z -= fGrassPatchOffsetMin + (fGrassPatchOffsetMax - fGrassPatchOffsetMin) * float(rand() % 1000) * 0.001f;
-			}
-
-			vCurPatchPos.x += fGrassPatchOffsetMin + (fGrassPatchOffsetMax - fGrassPatchOffsetMin) * float(rand() % 1000) * 0.001f;
-		}
-
-		glGenVertexArrays(1, &uiGrassVAO);
-		glBindVertexArray(uiGrassVAO);
-		// Attach vertex data to this VAO
-		vboGrassData.BindVBO();
-		vboGrassData.UploadDataToGPU(GL_STATIC_DRAW);
-
-		// Vertex positions
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), 0);
-		//--------------------------------------------------- */
-
 		bLoaded = true; // If get here, we succeeded with generating heightmap
 		return true;
 	}

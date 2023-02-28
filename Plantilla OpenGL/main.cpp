@@ -181,13 +181,14 @@ int main(void)
 		
 		//Renderiza el juego
 		MainScene->Render(window, MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, position);
-		position.y = MainScene->Get_YPosition();
+		//position.y = MainScene->Get_YPosition();
+		cout << "Position: x:" << position.x << " z:" << position.z << "\r";
 
 		//Frames
 		frames++;
 		double newTime = glfwGetTime();
 		if (newTime - currentTime >= 1.0) {
-			cout << "FPS: " << (float)frames / (float)(newTime - currentTime) << "\r";
+			//cout << "FPS: " << (float)frames / (float)(newTime - currentTime) << "\r";
 			frames = 0;
 			currentTime = newTime;
 		}

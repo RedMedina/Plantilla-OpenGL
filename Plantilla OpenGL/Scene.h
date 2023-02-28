@@ -35,7 +35,7 @@ public:
 		ModeloCaja = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/normal.bmp");
 		
 		/*Agua*/
-		Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaC.jpg", "Assets/Agua/AguaN.jpg", 50, 50);
+		Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaTextura3.png", "Assets/Agua/AguaN1.jpg", "Assets/Agua/AguaN2.jpg", 50, 50);
 		
 		/*Billboards*/
 		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png");
@@ -58,13 +58,14 @@ public:
 
 		/*Carga los modelos*/                                                              //Posicion                                                          Escala     Rotacion
 		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), vec3(1,1,1),  0, DayTransicionDuration);
-		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
 		
 		/*Modelos para desbugear el Terreno*/
 		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, -200, 10), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga el Terreno*/
 		Terreno->SetRenderSize(300.0f, 75.0f, 300.0f);
 		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelMatrix, DayTransicionDuration, position);
+		/*Carga el agua*/
+		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
 		/*Se coloca en la varible Y_Position la posción del Y del terreno apartir de la posición de la camara*/
 		Y_Position = Terreno->GetHeightFromRealVector(position) + 3.0f;
 

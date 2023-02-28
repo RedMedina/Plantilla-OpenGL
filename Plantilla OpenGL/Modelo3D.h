@@ -57,8 +57,6 @@ public:
 			vertices, uvs, normals, // input
 			tangents, bitangents    // output
 		);
-
-		
 		
 		vboIndex->indexVBO_TBN(
 			vertices, uvs, normals, tangents, bitangents,

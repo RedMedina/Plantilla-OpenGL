@@ -3,17 +3,30 @@
 // Input vertex data, different for all executions of this shader.
 layout(location = 0) in vec3 vertexPosition_modelspace;
 layout(location = 1) in vec2 vertexUV;
+layout(location = 2) in vec3 vertexNormal_modelspace;
+layout(location = 3) in vec3 vertexTangent_modelspace;
+layout(location = 4) in vec3 vertexBitangent_modelspace;
 
 // Output data ; will be interpolated for each fragment.
 out vec2 UV;
+out vec3 FragPos;
+out vec3 vertexPosition_modelspace2;
+out vec3 Normal;
+out vec3 Tangent;
+out vec3 binormal;
 
 // Values that stay constant for the whole mesh.
 uniform mat4 MVP;
+uniform mat4 model;
 
 void main(){
-
 	// Output position of the vertex, in clip space : MVP * position
 	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
     UV = vertexUV;
+	vertexPosition_modelspace2 = vertexPosition_modelspace;
+	FragPos = vec3(model * vec4(vertexPosition_modelspace, 1.0));
+    Normal = mat3(transpose(inverse(model))) * vertexNormal_modelspace;
+    Tangent = mat3(transpose(inverse(model))) * vertexTangent_modelspace;
+	binormal = mat3(transpose(inverse(model))) * vertexBitangent_modelspace;
 }
 
