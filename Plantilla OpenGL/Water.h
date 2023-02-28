@@ -27,6 +27,9 @@ public:
         NormalMap2 = Texture->LoadAnyTexture(Normales2);
         TexturNormalID2 = glGetUniformLocation(programID, "NormalTexture2");
 
+        CloudsTexture = Texture->LoadAnyTexture("Assets/Skydome/nube1.png");
+        CloudsTextureID = glGetUniformLocation(programID, "ReflectionClouds");
+
         MixvalueID = glGetUniformLocation(programID, "MixValue");
 
         TimeID = glGetUniformLocation(programID, "time");
@@ -90,6 +93,7 @@ public:
     {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glDisable(GL_CULL_FACE);
 
         // Use our shader
         glUseProgram(programID);
@@ -130,6 +134,12 @@ public:
         glBindTexture(GL_TEXTURE_2D, NormalMap2);
         // Set our "myTextureSampler" sampler to user Texture Unit 0
         glUniform1i(TexturNormalID2, 2);
+
+        // Bind our texture in Texture Unit 0
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, CloudsTexture);
+        // Set our "myTextureSampler" sampler to user Texture Unit 0
+        glUniform1i(CloudsTextureID, 3);
 
 
         if (SkyB) {
@@ -263,6 +273,7 @@ public:
             glVertex3fv(&p.x);
         }
 
+        glEnable(GL_CULL_FACE);
         glDisable(GL_BLEND);
     }
 
@@ -270,8 +281,8 @@ private:
     LoadTexture* Texture;
     Shader* shader;
     GLuint programID;
-    GLuint TexturaAgua;
-    GLuint TexturaAguaID;
+    GLuint TexturaAgua, CloudsTexture;
+    GLuint TexturaAguaID, CloudsTextureID;
     GLuint MatrixID, TimeID, lightDirectionID;
     GLuint vertexbuffer;
     GLuint uvbuffer;

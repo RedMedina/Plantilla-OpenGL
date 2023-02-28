@@ -13,6 +13,7 @@ out vec4 fragColor;
 uniform sampler2D WaterTexture;
 uniform sampler2D NormalTexture;
 uniform sampler2D NormalTexture2;
+uniform sampler2D ReflectionClouds;
 
 uniform vec2 textureOffset;
 uniform float time;
@@ -64,6 +65,15 @@ void main()
     //float specular = pow(max(dot(viewDir, reflect(-lightDir, newNormal)), 0.0), 32);
     vec3 specular = vec3(0.35); // Valor constante para el brillo especular
     //fragColor = texture(WaterTexture, UV*6) * vec4(vec3(ambient + diffuse + specular), 1.0);
+    
+    vec4 CloudColor = texture(ReflectionClouds, (UV*2) + textureOffset);
+    float transparency = CloudColor.r;
+    vec3 cloudColor2 = vec3(1.0) * 5;
+    vec4 ReflectionColorFinal = vec4(cloudColor2, transparency);
+
+    vec4 FinalWaterColor = mix(texture(WaterTexture, UV*6), ReflectionColorFinal, 0.2) * vec4(vec3(ambient + diffuse) + specular, 1.0);
+
+    //fragColor = FinalWaterColor;
     fragColor = texture(WaterTexture, UV*6) * vec4(vec3(ambient + diffuse) + specular, 1.0);
 
     //vec4 texColor = texture(WaterTexture, UV + textureOffset);

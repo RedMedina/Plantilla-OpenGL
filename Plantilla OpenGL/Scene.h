@@ -59,7 +59,7 @@ public:
 		/*Carga los modelos*/                                                              //Posicion                                                          Escala     Rotacion
 		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), vec3(1,1,1),  0, DayTransicionDuration);
 		
-		/*Modelos para desbugear el Terreno*/
+		/*Modelos para desbugear el Terreno no preguntes, solo deja esto como está xd*/
 		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, -200, 10), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga el Terreno*/
 		Terreno->SetRenderSize(300.0f, 75.0f, 300.0f);
