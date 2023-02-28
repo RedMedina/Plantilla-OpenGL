@@ -2,6 +2,7 @@
 #define __Scene
 
 #include "Modelo3D.h"
+#include "Music.h"
 #include "Water.h"
 #include "Billboards.h"
 #include "skybox.h"
@@ -12,6 +13,7 @@
 #include "Lights.h"
 #include "Camera.h"
 
+
 using namespace std;
 
 class Scene
@@ -20,7 +22,7 @@ public:
 	Scene()
 	{
 		/*Inicializamos algo*/
-		
+
 		/*Luces*/
 		lights = new Lights;
 		lights->InitLights();
@@ -51,7 +53,7 @@ public:
 
 		// Borra el buffer de color
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
+
 		/*Carga el skydome*/
 		skydome->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, window, DayTransicionDuration);
 		Nubes->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration);

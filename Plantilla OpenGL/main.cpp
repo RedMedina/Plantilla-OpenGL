@@ -8,6 +8,9 @@ using namespace std;
 //Ventana Principal
 GLFWwindow* window;
 
+//Sonidos de Pasos
+Music* FXWalk = new Music("Assets/Music/WalkFX.mp3");
+
 //Inputs and Camera Controls
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
@@ -69,26 +72,46 @@ void computeMatricesFromInputs() {
 	// Up vector
 	glm::vec3 up = glm::cross(right, direction);
 
+	
+
 	// Move forward
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
 		position += direction * deltaTime * speed;
-	}
+		FXWalk->Playback();
+	}    
 	// Move backward
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
 		position -= direction * deltaTime * speed;
+		FXWalk->Playback();
 	}
 	// Strafe right
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
 		position += right * deltaTime * speed;
+		FXWalk->Playback();
 	}
 	// Strafe left
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
 		position -= right * deltaTime * speed;
+		FXWalk->Playback();
 	}
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
 		isMouseEnabled = !isMouseEnabled; // Invierte el valor de la variable isMouseEnabled
 		glfwSetInputMode(window, GLFW_CURSOR, isMouseEnabled ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
 	}
+
+	bool no_key_pressed = true;
+	for (int key = GLFW_KEY_SPACE; key <= GLFW_KEY_LAST; key++) {
+		if (glfwGetKey(window, key) == GLFW_PRESS) {
+			no_key_pressed = false;
+			break;
+		}
+	}
+
+	if (no_key_pressed) {
+		FXWalk->Stop();
+	}
+
+	FXWalk->Update(0.5f);
 
 	float FoV = initialFoV;// - 5 * glfwGetMouseWheel(); // Now GLFW 3 requires setting up a callback for this. It's a bit too complicated for this beginner's tutorial, so it's disabled instead.
 

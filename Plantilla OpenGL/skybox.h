@@ -10,6 +10,15 @@ class Skybox{
 public:
     Skybox(float radius, const char* vertexShader, const char* fragmentShader, const char* texturaDia, const char* texturaAtardecer, const char* texturaNoche)
     {
+        /*Musica*/
+        PajarosFX = new Music("Assets/Music/BackgroundBirds.mp3");
+        //PajarosFX->Play();
+        //PajarosFX->Playback();
+       // PajarosFX->
+        BackgroundNoche = new Music("Assets/Music/NocheFX.mp3");
+        //BackgroundNoche->Play();
+        //BackgroundNoche->Stop();
+
         Escala = radius;
         glGenVertexArrays(1, &VertexArrayID);
         glBindVertexArray(VertexArrayID);
@@ -77,30 +86,46 @@ public:
             if (Sky > 0.8f && Sky <= 1)
             {
                 Sky += DayTransicionDuration * 3.0f;
+                PajarosFX->Stop();
+                BackgroundNoche->Playback();
             }
             else if (Sky > 0.2 && Sky < 0.8)
             {
                 Sky += DayTransicionDuration * 5.0f;
+                BackgroundNoche->Stop();
+                PajarosFX->Playback();
             }
             else if (Sky < 0.2 && Sky >= 0)
             {
                 Sky += DayTransicionDuration;
+                BackgroundNoche->Stop();
+                PajarosFX->Playback();
             }
         }
         else {
             if (Sky > 0.8f && Sky <= 1)
             {
                 Sky -= DayTransicionDuration * 3.0f;
+                PajarosFX->Stop();
+                BackgroundNoche->Playback();
             }
             else if (Sky > 0.2 && Sky < 0.8)
             {
                 Sky -= DayTransicionDuration * 5.0f;
+                BackgroundNoche->Stop();
+                PajarosFX->Playback();
             }
             else if (Sky < 0.2 && Sky >= 0)
             {
                 Sky -= DayTransicionDuration;
+                BackgroundNoche->Stop();
+                PajarosFX->Playback();
             }
         }
+
+        /*Reproduce la musica*/
+        PajarosFX->Update(0.7);
+        BackgroundNoche->Update(0.9f);
 
         if (Sky < 0.0) {
             Sky = 0.0f;
@@ -187,5 +212,6 @@ private:
     float Sky = 0.0f;
     bool SkyB = true;
     float skyRotation = 0;
+    Music* BackgroundNoche, *PajarosFX;
 };
 
