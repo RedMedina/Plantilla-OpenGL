@@ -12,7 +12,7 @@
 #include <GLFW/glfw3.h>
 #include "Lights.h"
 #include "Camera.h"
-
+#include "Collider.h"
 
 using namespace std;
 
@@ -42,13 +42,21 @@ public:
 		/*Billboards*/
 		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png");
 		Pasto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/grass7.png");
+		Arbusto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/arbusto.png");
+		Arbol = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/Arbol.png");
 
 		/*Terreno*/
 		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/Pasto.jpg", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
+	
+		/*Colliders*/
+		PlayerCollider.InitCollider(vec3(0, 0, 5), 6);
+		ArbolAzulCollider.InitCollider(vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), 10);
+		PushCollider(ArbolAzulCollider);
 	}
 
 	void Render(GLFWwindow* window , glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position)
 	{
+		
 		/*Aqui se ejecutara todo el juego*/
 
 		// Borra el buffer de color
@@ -75,6 +83,22 @@ public:
 		                                                           //X                            Y                            Z
 		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)), 1), vec2(1, 1));
 		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, Terreno->GetHeightFromRealVector(glm::vec3(-8, 0, 1)), 1), vec2(1, 1));
+		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7));
+		
+		/*Se Actualiza la posicion del collider del jugador*/
+		PlayerCollider.SetPosition(position.x, position.y, position.z);
+
+		/*Verifica las colisiones*/
+		ColliderBackPos = false;
+		Collider* AuxDetectColl = Colliders;
+		while (AuxDetectColl != NULL)
+		{
+			if (intersect(PlayerCollider, AuxDetectColl)) {
+				// colisión detectada
+				ColliderBackPos = true;
+			}
+			AuxDetectColl = AuxDetectColl->sig;
+		}
 
 		/*Revisa si se dibujó el objeto*/
 		if (init < 1)
@@ -90,6 +114,33 @@ public:
 		return Y_Position;
 	}
 
+	bool SetNewPosCollider()
+	{
+		return ColliderBackPos;
+	}
+
+	bool intersect(Collider sphere1, Collider* sphere2) {
+		float distance = glm::distance(sphere1.center, sphere2->center);
+		return distance <= (sphere1.radius + sphere2->radius);
+	}
+
+	void PushCollider(Collider datos) {
+		if (Colliders == NULL) {
+			Colliders = new Collider();
+			Colliders->ant = NULL;
+			AuxColliders = Colliders;
+		}
+		else {
+			AuxColliders->sig = new Collider();
+			AuxColliders->sig->ant = new Collider();
+			AuxColliders->sig->ant = AuxColliders;
+			AuxColliders = AuxColliders->sig;
+		}
+		AuxColliders->center = datos.center;
+		AuxColliders->radius = datos.radius;
+		AuxColliders->sig = NULL;
+	}
+
 	~Scene()
 	{
 		/*Vaciamos la memoria del juego*/
@@ -97,6 +148,8 @@ public:
 		delete lights;
 		delete ModeloTest;
 		delete ModeloCaja;
+		delete Agua;
+		delete Terreno;
 		delete bill1;
 		delete Nubes;
 		delete Pasto;
@@ -110,11 +163,22 @@ private:
 	Modelo3D* ModeloCaja;
 	Billboards* bill1;
 	Billboards* Pasto;
+	Billboards* Arbusto;
+	Billboards* Arbol;
 	Water* Agua;
 	Clouds* Nubes;
 	float DayTransicionDuration = 0.00005f;
 	Terrain* Terreno;
 	float Y_Position = 0;
+	float MovLuna = 0;
+	bool ColliderBackPos = false;
+
+	/*Collider*/
+	Collider PlayerCollider;
+	Collider ArbolAzulCollider;
+
+	Collider* Colliders = NULL;
+	Collider* AuxColliders = NULL;
 };
 
 #endif

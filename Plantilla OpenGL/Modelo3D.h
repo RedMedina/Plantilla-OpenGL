@@ -105,24 +105,27 @@ public:
 		glm::vec3 lightPos = glm::vec3(0, 0, 4);
 		glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		// Bind our diffuse texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, DiffuseTexture);
 		// Set our "DiffuseTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(DiffuseTextureID, 0);
+		
 
 		// Bind our normal texture in Texture Unit 1
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, NormalTexture);
 		// Set our "Normal	TextureSampler" sampler to user Texture Unit 0
 		glUniform1i(NormalTextureID, 1);
-
+		
 		// Bind our normal texture in Texture Unit 2
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D, SpecularTexture);
 		// Set our "Normal	TextureSampler" sampler to user Texture Unit 0
 		glUniform1i(SpecularTextureID, 2);
-
+		glDisable(GL_BLEND);
 		//Lights
 		if (SkyB) {
 			if (Sky > 0.8f && Sky <= 1)
@@ -255,6 +258,8 @@ public:
 		glDisableVertexAttribArray(2);
 		glDisableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
+		
+		
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrixf((const GLfloat*)&ProjectionMatrix[0]);
@@ -307,7 +312,6 @@ public:
 		lightPos += glm::vec3(0, 1, 0) * 0.1f;
 		glVertex3fv(&lightPos.x);
 		glEnd();
-
 	}
 
 	~Modelo3D()

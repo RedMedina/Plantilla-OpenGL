@@ -23,13 +23,14 @@ glm::mat4 getProjectionMatrix() {
 }
 
 // Initial position : on +Z
-glm::vec3 position = glm::vec3(0, 0, 5);
+glm::vec3 position = glm::vec3(-77, 0, 35);
 // Initial horizontal angle : toward -Z
 float horizontalAngle = 3.14f;
 // Initial vertical angle : none
 float verticalAngle = 0.0f;
 // Initial Field of View
 float initialFoV = 45.0f;
+int Vista = 0;
 
 float speed = 18.0f; // 3 units / second
 float mouseSpeed = 0.005f;
@@ -77,21 +78,25 @@ void computeMatricesFromInputs() {
 	// Move forward
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
 		position += direction * deltaTime * speed;
+		Vista = 1;
 		FXWalk->Playback();
 	}    
 	// Move backward
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
 		position -= direction * deltaTime * speed;
+		Vista = -1;
 		FXWalk->Playback();
 	}
 	// Strafe right
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
 		position += right * deltaTime * speed;
+		Vista = 1;
 		FXWalk->Playback();
 	}
 	// Strafe left
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
 		position -= right * deltaTime * speed;
+		Vista -= 1;
 		FXWalk->Playback();
 	}
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
@@ -186,6 +191,7 @@ int main(void)
 	glfwSetCursorPos(window, 1080 / 2, 720 / 2);
 
 	MainScene = new Scene();
+	vec3 AntPos = position;
 
 	// Bucle principal de juego
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && !glfwWindowShouldClose(window))
@@ -205,6 +211,11 @@ int main(void)
 		//Renderiza el juego
 		MainScene->Render(window, MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, position);
 		position.y = MainScene->Get_YPosition();
+		if(MainScene->SetNewPosCollider())
+		{
+			position = AntPos;
+		} 
+		AntPos = position;
 		//cout << "Position: x:" << position.x << " z:" << position.z << "\r";
 
 		//Frames

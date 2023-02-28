@@ -124,8 +124,8 @@ public:
         }
 
         /*Reproduce la musica*/
-        PajarosFX->Update(0.7);
-        BackgroundNoche->Update(0.9f);
+        PajarosFX->Update(0.5);
+        BackgroundNoche->Update(0.8f);
 
         if (Sky < 0.0) {
             Sky = 0.0f;
