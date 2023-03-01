@@ -5,13 +5,14 @@ in vec2 UV;
 in vec3 Position_worldspace;
 in vec3 EyeDirection_cameraspace;
 in vec3 LightDirection_cameraspace;
-
+in vec4 ShadowCoord;
+in vec3 Normal_cameraspace;
 in vec3 LightDirection_tangentspace;
 in vec3 EyeDirection_tangentspace;
 
 // Ouput data
-//out vec3 color;
-out vec4 color;
+//out vec4 color;
+layout(location = 0) out vec4 color;
 
 // Values that stay constant for the whole mesh.
 uniform sampler2D DiffuseTextureSampler;
@@ -22,6 +23,34 @@ uniform mat4 M;
 uniform mat3 MV3x3;
 uniform vec3 LightPosition_worldspace;
 uniform float time;
+uniform sampler2DShadow shadowMap;
+uniform float PotenciaLuz;
+
+vec2 poissonDisk[16] = vec2[]( 
+   vec2( -0.94201624, -0.39906216 ), 
+   vec2( 0.94558609, -0.76890725 ), 
+   vec2( -0.094184101, -0.92938870 ), 
+   vec2( 0.34495938, 0.29387760 ), 
+   vec2( -0.91588581, 0.45771432 ), 
+   vec2( -0.81544232, -0.87912464 ), 
+   vec2( -0.38277543, 0.27676845 ), 
+   vec2( 0.97484398, 0.75648379 ), 
+   vec2( 0.44323325, -0.97511554 ), 
+   vec2( 0.53742981, -0.47373420 ), 
+   vec2( -0.26496911, -0.41893023 ), 
+   vec2( 0.79197514, 0.19090188 ), 
+   vec2( -0.24188840, 0.99706507 ), 
+   vec2( -0.81409955, 0.91437590 ), 
+   vec2( 0.19984126, 0.78641367 ), 
+   vec2( 0.14383161, -0.14100790 ) 
+);
+
+// Returns a random number based on a vec3 and an int.
+float random(vec3 seed, int i){
+	vec4 seed4 = vec4(seed,i);
+	float dot_product = dot(seed4, vec4(12.9898,78.233,45.164,94.673));
+	return fract(sin(dot_product) * 43758.5453);
+}
 
 void main(){
 
@@ -32,7 +61,7 @@ void main(){
      vec3 color2Night = vec3(0.7, 0.4, 1.0);  // Morado
 	 vec3 finalColor = mix(color1SunSet, color2Night, t);
 
-	 vec3 color1a = vec3(0.75, 0.75, 0.75); // Primer color de transición (celeste)
+	 vec3 color1a = vec3(0.4, 0.4, 0.4); // Primer color de transición (celeste)
     vec3 color2b = vec3(1.0, 0.5, 0.2); // Segundo color de transición (naranja)
     vec3 color3c = vec3(0.0, 0.0, 0.0); // Tercer color de transición (negro)
     
@@ -48,7 +77,7 @@ void main(){
 
 	vec3 LightColor  = LightColorr;
 
-	float LightPower = 15.0;
+	float LightPower = PotenciaLuz;
 	
 	// Material properties
 	vec3 MaterialDiffuseColor = texture( DiffuseTextureSampler, UV ).rgb * 10;
@@ -62,7 +91,8 @@ void main(){
 	float distance = length( LightPosition_worldspace  );
 
 	// Normal of the computed fragment, in camera space
-	vec3 n = TextureNormal_tangentspace;
+	//vec3 n = TextureNormal_tangentspace;
+	vec3 n = mix(normalize( Normal_cameraspace ), TextureNormal_tangentspace, 0.5);
 	// Direction of the light (from the fragment to the light)
 	vec3 l = normalize(LightDirection_tangentspace);
 	// Cosine of the angle between the normal and the light direction, 
@@ -82,13 +112,22 @@ void main(){
 	//  - Looking elsewhere -> < 1
 	float cosAlpha = clamp( dot( E,R ), 0,1 );
 
+	float visibility=1.0;
+	float bias = 0.005;
+
+	// Sample the shadow map 4 times
+	for (int i=0;i<4;i++){
+		int index = i;
+		visibility -= 0.2*(1.0-texture( shadowMap, vec3(ShadowCoord.xy + poissonDisk[index]/700.0,  (ShadowCoord.z-bias)/ShadowCoord.w) ));
+	}
+
 	vec3 colorFinal = 
 	    // Ambient : simulates indirect lighting
 		MaterialAmbientColor +
 		// Diffuse : "color" of the object
-		MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance) +
+		visibility * MaterialDiffuseColor * LightColor * LightPower * cosTheta  /*/ (distance*distance)*/ +
 		// Specular : reflective highlight, like a mirror
-		MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);
+		visibility * MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) /* / (distance*distance)*/;
 
 	float MixValue;
 	if(time>0.7)
@@ -97,10 +136,11 @@ void main(){
 	}
 	else
 	{
-		MixValue=0.4f;
+		MixValue=0.2f;
 	}
 
 
 	//color = mix(colorFinal, LightColorr, MixValue);
 	color = mix(vec4(colorFinal, texture(DiffuseTextureSampler, UV).a), vec4(LightColorr, texture(DiffuseTextureSampler, UV).a), MixValue);
+	//OutColorv3 = color.rgb;
 }

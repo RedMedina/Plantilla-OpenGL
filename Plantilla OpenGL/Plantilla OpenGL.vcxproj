@@ -181,11 +181,15 @@
     <None Include="billboard.vertex" />
     <None Include="Clouds.fragment" />
     <None Include="Clouds.vertex" />
+    <None Include="DepthRTT.fragmentshader" />
+    <None Include="DepthRTT.vertexshader" />
     <None Include="Grass.fragment" />
     <None Include="Grass.geom" />
     <None Include="Grass.vertex" />
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />
+    <None Include="Passthrough.vertexshader" />
+    <None Include="SimpleTexture.fragmentshader" />
     <None Include="Skybox.fragment" />
     <None Include="Skybox.vertex" />
     <None Include="Terrain.fragment" />

@@ -151,5 +151,17 @@
     <None Include="Grass.geom">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="DepthRTT.vertexshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="DepthRTT.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Passthrough.vertexshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="SimpleTexture.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
