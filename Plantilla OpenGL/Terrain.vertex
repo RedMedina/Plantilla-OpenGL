@@ -10,12 +10,38 @@ smooth out vec2 UV;
 smooth out vec3 vNormal;
 smooth out vec3 vWorldPos;
 smooth out vec4 vEyeSpacePos;
+smooth out vec3 vTangent;
+smooth out vec3 vBinormal;
+
+out vec3 EyeDirection_cameraspace;
+out vec3 LightDirection_cameraspace;
+out vec3 LightDirection_tangentspace;
+out vec3 EyeDirection_tangentspace;
 
 // Values that stay constant for the whole mesh.
 uniform mat4 MVP;
 uniform mat4 HeightmapScaleMatrix;
 uniform mat4 MV;
+uniform mat4 V;
 uniform mat4 Model;
+uniform mat3 MV3x3;
+uniform vec3 lightPos;
+
+vec3 calculateTangent(vec3 position1, vec3 position2, vec3 position3, vec2 uv1, vec2 uv2, vec2 uv3) {
+    vec3 edge1 = position2 - position1;
+    vec3 edge2 = position3 - position1;
+    vec2 deltaUV1 = uv2 - uv1;
+    vec2 deltaUV2 = uv3 - uv1;
+
+    float f = 1.0 / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
+
+    vec3 tangent;
+    tangent.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
+    tangent.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
+    tangent.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+
+    return normalize(tangent);
+}
 
 void main(){
 	vec4 inPositionScaled = HeightmapScaleMatrix*vec4(vertexPosition_modelspace, 1.0);
@@ -27,4 +53,29 @@ void main(){
 	vNormal = inNormal;
 	 vec4 vWorldPosLocal = Model*inPositionScaled;
 	 vWorldPos = vWorldPosLocal.xyz;
+
+     // Calculate tangent and binormal
+    vec3 tangent1 = calculateTangent(vertexPosition_modelspace, vertexPosition_modelspace + vec3(1.0, 0.0, 0.0), vertexPosition_modelspace + vec3(0.0, 1.0, 0.0), vertexUV, vertexUV + vec2(1.0, 0.0), vertexUV + vec2(0.0, 1.0));
+    vec3 tangent2 = calculateTangent(vertexPosition_modelspace, vertexPosition_modelspace + vec3(0.0, 1.0, 0.0), vertexPosition_modelspace + vec3(0.0, 0.0, 1.0), vertexUV, vertexUV + vec2(0.0, 1.0), vertexUV + vec2(0.0, 0.0));
+    vTangent = normalize(tangent1 + tangent2);
+
+    vBinormal = normalize(cross(vNormal, tangent1));
+
+    vec3 vertexPosition_cameraspace = ( MV* vec4(vertexPosition_modelspace,1)).xyz;
+	EyeDirection_cameraspace = vec3(0,0,0) - vertexPosition_cameraspace;
+    vec3 LightPosition_cameraspace = ( V * vec4(lightPos,1)).xyz;
+	LightDirection_cameraspace = LightPosition_cameraspace + EyeDirection_cameraspace;
+
+    vec3 vertexTangent_cameraspace = MV3x3 * tangent1;
+	vec3 vertexBitangent_cameraspace = MV3x3 * vBinormal;
+	vec3 vertexNormal_cameraspace = MV3x3 * inNormal;
+
+    mat3 TBN = transpose(mat3(
+		vertexTangent_cameraspace,
+		vertexBitangent_cameraspace,
+		vertexNormal_cameraspace	
+	)); // You can use dot products instead of building this matrix and transposing it. See References for details.
+
+	LightDirection_tangentspace = TBN * LightDirection_cameraspace;
+	EyeDirection_tangentspace =  TBN * EyeDirection_cameraspace;
 }

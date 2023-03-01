@@ -46,7 +46,7 @@ public:
 		Arbol = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/Arbol.png");
 
 		/*Terreno*/
-		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/Pasto.jpg", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
+		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/MonteNormal.png","Assets/Terreno/Pasto.jpg", "Assets/Terreno/PasNormal.png", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/TierraNormal.png", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
 	
 		/*Colliders*/
 		PlayerCollider.InitCollider(vec3(0, 0, 5), 6);
@@ -73,7 +73,7 @@ public:
 		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, -200, 10), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga el Terreno*/
 		Terreno->SetRenderSize(300.0f, 75.0f, 300.0f);
-		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelMatrix, DayTransicionDuration, position);
+		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelView3x3Matrix,ModelMatrix, DayTransicionDuration, position);
 		/*Carga el agua*/
 		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
 		/*Se coloca en la varible Y_Position la posción del Y del terreno apartir de la posición de la camara*/
@@ -167,7 +167,7 @@ private:
 	Billboards* Arbol;
 	Water* Agua;
 	Clouds* Nubes;
-	float DayTransicionDuration = 0.00005f;
+	float DayTransicionDuration = 0.0005f;
 	Terrain* Terreno;
 	float Y_Position = 0;
 	float MovLuna = 0;

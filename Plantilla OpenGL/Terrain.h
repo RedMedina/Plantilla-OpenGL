@@ -17,10 +17,10 @@ class Terrain
 {
 public:
 
-	Terrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
+	Terrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura1Normal, const char* Textura2, const char* Textura2Normal, const char* Textura3, const char* Textura3Normal, const char* Blendmap, const char* Alturas)
 	{
 		//	InitTerrainWithModel(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
-		CreateTerrain(vertexShader, fragmentShader, Textura1, Textura2, Textura3, Blendmap, Alturas);
+		CreateTerrain(vertexShader, fragmentShader, Textura1, Textura1Normal, Textura2, Textura2Normal, Textura3, Textura3Normal, Blendmap, Alturas);
 	}
 
 	void InitTerrainWithModel(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
@@ -62,7 +62,7 @@ public:
 		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 	}
 
-	bool CreateTerrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura2, const char* Textura3, const char* Blendmap, const char* Alturas)
+	bool CreateTerrain(const char* vertexShader, const char* fragmentShader, const char* Textura1, const char* Textura1Normal, const char* Textura2, const char* Textura2Normal, const char* Textura3, const char* Textura3Normal, const char* Blendmap, const char* Alturas)
 	{
 		if (bLoaded)
 		{
@@ -105,6 +105,8 @@ public:
 
 		MVID = glGetUniformLocation(programID, "MV");
 		ModelID = glGetUniformLocation(programID, "Model");
+		MV3x3 = glGetUniformLocation(programID, "MV3x3");
+		VID = glGetUniformLocation(programID, "V");
 
 		Texture = new LoadTexture();
 		textura1 = Texture->LoadAnyTexture(Textura1);
@@ -115,6 +117,18 @@ public:
 
 		textura3 = Texture->LoadAnyTexture(Textura3);
 		Textura3ID = glGetUniformLocation(programID, "Texture3");
+
+		textura1Normal = Texture->LoadAnyTexture(Textura1Normal);
+		Textura1IDNormal = glGetUniformLocation(programID, "Texture1Normal");
+
+		textura2Normal = Texture->LoadAnyTexture(Textura2Normal);
+		Textura2IDNormal = glGetUniformLocation(programID, "Texture2Normal");
+
+		textura3Normal = Texture->LoadAnyTexture(Textura3Normal);
+		Textura3IDNormal = glGetUniformLocation(programID, "Texture3Normal");
+
+		texturaBackNormal = Texture->LoadAnyTexture("Assets/Terreno/normalMap.png");
+		TexturaBackNormalId = glGetUniformLocation(programID, "BackNormal");
 
 		blendmap = Texture->LoadAnyTexture(Blendmap);
 		blendmap3ID = glGetUniformLocation(programID, "Blendmap");
@@ -249,20 +263,31 @@ public:
 		//vboHeightmapIndices.UploadDataToGPU(GL_STATIC_DRAW);
 
 		bLoaded = true; // If get here, we succeeded with generating heightmap
+
+		// Get a handle for our "LightPosition" uniform
+		glUseProgram(programID);
+		LightID = glGetUniformLocation(programID, "lightPos");
+
 		return true;
 	}
 
-	void Render(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::mat4 Model, float DayTransicionDuration, glm::vec3 position)
+	void Render(glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 Model, float DayTransicionDuration, glm::vec3 position)
 	{
 		glDisable(GL_CULL_FACE);
 		// Use our shader
 		glUseProgram(programID);
+
+		glm::vec3 lightPos = glm::vec3(0, 0, 4);
+		glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
+
 		glm::mat4 HeightT = glm::scale(glm::mat4(1.0), glm::vec3(vRenderScale));
 		glUniformMatrix4fv(IdHeight, 1, GL_FALSE, &HeightT[0][0]);
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 		glm::mat4 MV = ViewMatrix * Model;
 		glUniformMatrix4fv(MVID, 1, GL_FALSE, &MV[0][0]);
+		glUniformMatrix4fv(VID, 1, GL_FALSE, &ViewMatrix[0][0]);
 		glUniformMatrix4fv(ModelID, 1, GL_FALSE, &Model[0][0]);
+		glUniformMatrix3fv(MV3x3, 1, GL_FALSE, &ModelView3x3Matrix[0][0]);
 
 		//Lights
 		if (SkyB) {
@@ -336,6 +361,30 @@ public:
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(AlturaID, 4);
 
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE5);
+		glBindTexture(GL_TEXTURE_2D, textura1Normal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura1IDNormal, 5);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE6);
+		glBindTexture(GL_TEXTURE_2D, textura2Normal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura2IDNormal, 6);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE7);
+		glBindTexture(GL_TEXTURE_2D, textura3Normal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura3IDNormal, 7);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE8);
+		glBindTexture(GL_TEXTURE_2D, texturaBackNormal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(TexturaBackNormalId, 8);
+
 		/*Grass----------------------------------------------------------------------/
 		glUseProgram(GrassShaderID);
 		glUniformMatrix4fv(ProyeccionIDGrass, 1, GL_FALSE, &u_ProjectionMatrix[0][0]);
@@ -364,6 +413,8 @@ public:
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3) + sizeof(glm::vec2), (void*)(sizeof(glm::vec3) + sizeof(glm::vec2)));
 
+		// Index buffer
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 
 		unoA++;
 		glBindVertexArray(uiVAO);
@@ -377,6 +428,8 @@ public:
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
+
+		glUseProgram(0);
 	}
 
 	void SetRenderSize(float fRenderX, float fHeight, float fRenderZ)
@@ -487,6 +540,30 @@ public:
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(AlturaID, 4);
 
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE5);
+		glBindTexture(GL_TEXTURE_2D, textura1Normal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura1IDNormal, 5);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE6);
+		glBindTexture(GL_TEXTURE_2D, textura2Normal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura2IDNormal, 6);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE7);
+		glBindTexture(GL_TEXTURE_2D, textura3Normal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(Textura3IDNormal, 7);
+
+		// Bind our texture in Texture Unit 0
+		glActiveTexture(GL_TEXTURE8);
+		glBindTexture(GL_TEXTURE_2D, texturaBackNormal);
+		// Set our "myTextureSampler" sampler to user Texture Unit 0
+		glUniform1i(TexturaBackNormalId,8);
+
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -521,8 +598,8 @@ public:
 	}
 
 private:
-	GLuint uiVAO, MVID, ModelID, uiGrassVAO;
-	GLuint VertexArrayID, programID, GrassShaderID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID, IdHeight, GrassTextura, GraddTexturaID, ModeloIDGrass, VistaIDGrass, ProyeccionIDGrass, IDTiempoPasado, IDPosicionGrass;
+	GLuint uiVAO, MVID, ModelID, MV3x3, uiGrassVAO, textura1Normal, textura2Normal, textura3Normal, Textura1IDNormal, Textura2IDNormal, Textura3IDNormal;
+	GLuint VertexArrayID, programID, LightID, VID, GrassShaderID, MatrixID, textura1, Textura1ID, textura2, Textura2ID, textura3, Textura3ID, blendmap, blendmap3ID, IdHeight, GrassTextura, GraddTexturaID, ModeloIDGrass, VistaIDGrass, ProyeccionIDGrass, IDTiempoPasado, IDPosicionGrass, texturaBackNormal, TexturaBackNormalId;
 	Shader* shader, *GrassShader;
 	LoadTexture* Texture, *LoadGrassTexture;
 	Load3dModel* modelLoad;
@@ -530,8 +607,19 @@ private:
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
 	vector<vector<glm::vec3>>vVertexData;
+	std::vector<unsigned short> indices;
+	std::vector<glm::vec3> indexed_vertices;
+	std::vector<glm::vec2> indexed_uvs;
+	std::vector<glm::vec3> indexed_normals;
+	std::vector<glm::vec3> indexed_tangents;
+	std::vector<glm::vec3> indexed_bitangents;
+	vboindexer* vboIndex;
+	tangentspace* tangent;
 	GLuint vertexbuffer;
 	GLuint uvbuffer;
+	GLuint tangentbuffer;
+	GLuint bitangentbuffer;
+	GLuint elementbuffer;
 	GLuint Altura, AlturaID, IDMix;
 	float Sky = 0.0f;
 	bool SkyB = true;
