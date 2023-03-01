@@ -125,7 +125,7 @@ public:
 		glBindTexture(GL_TEXTURE_2D, SpecularTexture);
 		// Set our "Normal	TextureSampler" sampler to user Texture Unit 0
 		glUniform1i(SpecularTextureID, 2);
-		glDisable(GL_BLEND);
+		
 		//Lights
 		if (SkyB) {
 			if (Sky > 0.8f && Sky <= 1)
@@ -259,7 +259,7 @@ public:
 		glDisableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
 		
-		
+		glDisable(GL_BLEND);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrixf((const GLfloat*)&ProjectionMatrix[0]);

@@ -10,7 +10,8 @@ in vec3 LightDirection_tangentspace;
 in vec3 EyeDirection_tangentspace;
 
 // Ouput data
-out vec3 color;
+//out vec3 color;
+out vec4 color;
 
 // Values that stay constant for the whole mesh.
 uniform sampler2D DiffuseTextureSampler;
@@ -98,6 +99,8 @@ void main(){
 	{
 		MixValue=0.4f;
 	}
-	color = mix(colorFinal, LightColorr,MixValue);
 
+
+	//color = mix(colorFinal, LightColorr, MixValue);
+	color = mix(vec4(colorFinal, texture(DiffuseTextureSampler, UV).a), vec4(LightColorr, texture(DiffuseTextureSampler, UV).a), MixValue);
 }

@@ -35,7 +35,8 @@ public:
 		/*Modelos 3D*/
 		ModeloTest = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/ArbolAzul/Arbol.obj", "Assets/Modelos/ArbolAzul/ArbolTextura.bmp", "Assets/Modelos/ArbolAzul/ArbolTextura.bmp", "Assets/Modelos/ArbolAzul/ArbolN.bmp");
 		ModeloCaja = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/normal.bmp");
-		
+		Arbol1 = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Arbol/Arbol1.obj", "Assets/Modelos/Arbol/TexturaArbol.png", "Assets/Modelos/Arbol/TexturaArbol.png", "Assets/Modelos/Arbol/ArbolNormales.png");
+
 		/*Agua*/
 		Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaTextura3.png", "Assets/Agua/AguaN1.jpg", "Assets/Agua/AguaN2.jpg", 50, 50);
 		
@@ -51,6 +52,8 @@ public:
 		/*Colliders*/
 		PlayerCollider.InitCollider(vec3(0, 0, 5), 6);
 		ArbolAzulCollider.InitCollider(vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), 10);
+		Arbol1Collider.InitCollider(vec3(20, Terreno->GetHeightFromRealVector(glm::vec3(20, 0, 20)), 20), 10);
+		PushCollider(Arbol1Collider);
 		PushCollider(ArbolAzulCollider);
 	}
 
@@ -79,12 +82,14 @@ public:
 		/*Se coloca en la varible Y_Position la posción del Y del terreno apartir de la posición de la camara*/
 		Y_Position = Terreno->GetHeightFromRealVector(position) + 3.0f;
 
+		Arbol1->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(20, Terreno->GetHeightFromRealVector(glm::vec3(20, 0, 20)), 20), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga los billboards*/                              //Posicion  Esta función me dice que altura es la del terreno en esas coords Escala
 		                                                           //X                            Y                            Z
 		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)), 1), vec2(1, 1), DayTransicionDuration);
 		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, Terreno->GetHeightFromRealVector(glm::vec3(-8, 0, 1)), 1), vec2(1, 1), DayTransicionDuration);
 		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7), DayTransicionDuration);
-		
+		Arbol->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(7, Terreno->GetHeightFromRealVector(glm::vec3(7, 0, 40))+6.5, 40), vec2(13, 13), DayTransicionDuration);
+
 		/*Se Actualiza la posicion del collider del jugador*/
 		PlayerCollider.SetPosition(position.x, position.y, position.z);
 
@@ -161,6 +166,7 @@ private:
 	Lights* lights;
 	Modelo3D* ModeloTest;
 	Modelo3D* ModeloCaja;
+	Modelo3D* Arbol1;
 	Billboards* bill1;
 	Billboards* Pasto;
 	Billboards* Arbusto;
@@ -176,6 +182,7 @@ private:
 	/*Collider*/
 	Collider PlayerCollider;
 	Collider ArbolAzulCollider;
+	Collider Arbol1Collider;
 
 	Collider* Colliders = NULL;
 	Collider* AuxColliders = NULL;
