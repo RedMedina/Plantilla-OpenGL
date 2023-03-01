@@ -81,9 +81,9 @@ public:
 
 		/*Carga los billboards*/                              //Posicion  Esta función me dice que altura es la del terreno en esas coords Escala
 		                                                           //X                            Y                            Z
-		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)), 1), vec2(1, 1));
-		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, Terreno->GetHeightFromRealVector(glm::vec3(-8, 0, 1)), 1), vec2(1, 1));
-		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7));
+		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)), 1), vec2(1, 1), DayTransicionDuration);
+		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, Terreno->GetHeightFromRealVector(glm::vec3(-8, 0, 1)), 1), vec2(1, 1), DayTransicionDuration);
+		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7), DayTransicionDuration);
 		
 		/*Se Actualiza la posicion del collider del jugador*/
 		PlayerCollider.SetPosition(position.x, position.y, position.z);

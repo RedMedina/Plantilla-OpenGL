@@ -28,6 +28,8 @@ public:
 		TextureID = glGetUniformLocation(programID, "myTextureSampler");
 		Texture = TextureLoad->LoadAnyTexture(Textura);
 
+		TiempoID = glGetUniformLocation(programID, "time");
+
 		// The VBO containing the 4 vertices of the particles.
 		static const GLfloat g_vertex_buffer_data[] = {
 			 -0.5f, -0.5f, 0.0f,
@@ -41,7 +43,7 @@ public:
 		glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_DYNAMIC_DRAW);
 	}
 
-	void Draw(glm::mat4 ViewMatrix, glm::mat4 ProjectionMatrix, glm::mat4 ModelMatrix, glm::vec3 position, glm::vec2 scala)
+	void Draw(glm::mat4 ViewMatrix, glm::mat4 ProjectionMatrix, glm::mat4 ModelMatrix, glm::vec3 position, glm::vec2 scala, float DayTransicionDuration)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -80,6 +82,46 @@ public:
 		glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 		glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
 
+		//Lights
+		if (SkyB) {
+			if (Sky > 0.8f && Sky <= 1)
+			{
+				Sky += DayTransicionDuration * 3.0f;
+			}
+			else if (Sky > 0.2 && Sky < 0.8)
+			{
+				Sky += DayTransicionDuration * 5.0f;
+			}
+			else if (Sky < 0.2 && Sky >= 0)
+			{
+				Sky += DayTransicionDuration;
+			}
+		}
+		else {
+			if (Sky > 0.8f && Sky <= 1)
+			{
+				Sky -= DayTransicionDuration * 3.0f;
+			}
+			else if (Sky > 0.2 && Sky < 0.8)
+			{
+				Sky -= DayTransicionDuration * 5.0f;
+			}
+			else if (Sky < 0.2 && Sky >= 0)
+			{
+				Sky -= DayTransicionDuration;
+			}
+		}
+
+		if (Sky < 0.0) {
+			Sky = 0.0f;
+			SkyB = true;
+		}
+		else if (Sky > 1.0f) {
+
+			Sky = 1.0f;
+			SkyB = false;
+		}
+		glUniform1f(TiempoID, Sky);
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -127,4 +169,7 @@ private:
 	GLuint VertexArrayID;
 	GLuint IDtime, idWindDir, ModelID, ViewID, PryectID;
 	float TiempoValor = 1;
+	GLuint TiempoID;
+	float Sky = 0.0f;
+	bool SkyB = true;
 };
