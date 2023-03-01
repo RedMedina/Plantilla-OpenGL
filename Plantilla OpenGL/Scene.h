@@ -52,7 +52,7 @@ public:
 		/*Colliders*/
 		PlayerCollider.InitCollider(vec3(0, 0, 5), 6);
 		ArbolAzulCollider.InitCollider(vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), 10);
-		Arbol1Collider.InitCollider(vec3(20, Terreno->GetHeightFromRealVector(glm::vec3(20, 0, 20)), 20), 10);
+		Arbol1Collider.InitCollider(vec3(10, Terreno->GetHeightFromRealVector(glm::vec3(10, 0, 3)), 3), 10);
 		PushCollider(Arbol1Collider);
 		PushCollider(ArbolAzulCollider);
 	}
@@ -173,7 +173,7 @@ private:
 	Billboards* Arbol;
 	Water* Agua;
 	Clouds* Nubes;
-	float DayTransicionDuration = 0.0005f;
+	float DayTransicionDuration = 0.00005f;
 	Terrain* Terreno;
 	float Y_Position = 0;
 	float MovLuna = 0;
