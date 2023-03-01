@@ -7,24 +7,43 @@ in vec2 UV;
 out vec4 color;
 
 uniform sampler2D myTextureSampler;
-uniform sampler2D blendMap;
-
+uniform float time;
+uniform float time1;
 uniform float LifeLevel;
 
 void main(){
 	// Output color = color of the texture at the specified UV
-	vec4 blendValue = texture(blendMap, UV);
-	if (blendValue.r > 0.5)
+
+	vec3 color1a = vec3(0.75, 0.75, 0.75); // Primer color de transición (celeste)
+    vec3 color2b = vec3(1.0, 0.5, 0.2); // Segundo color de transición (naranja)
+    vec3 color3c = vec3(0.0, 0.0, 0.0); // Tercer color de transición (negro)
+
+	vec3 LightColorr;
+	if (time < 0.5) {
+        LightColorr = mix(color1a, color2b, time * 2.0);
+    } else {
+        LightColorr = mix(color2b, color3c, (time - 0.5) * 2.0);
+    }
+
+	float waveAmplitude = 0.03;
+	float waveFrequency = 12.0;
+	float waveSpeed = 0.1;
+	float wave = sin(UV.y * waveFrequency + time1 * waveSpeed) * waveAmplitude;
+	vec2 offset = vec2(0.0, wave);
+
+	vec4 colorFinal = texture( myTextureSampler, UV + offset);
+
+	vec4 LightColorWithAlpha = vec4(LightColorr, colorFinal.a);
+
+	float MixValue;
+	if(time>0.7)
 	{
-		color = texture( myTextureSampler, UV );
+		MixValue=0.55f;
 	}
 	else
 	{
-		discard;
+		MixValue=0.4f;
 	}
-	
-	
-	// Hardcoded life level, should be in a separate texture.
-	//if (UV.x < LifeLevel && UV.y > 0.3 && UV.y < 0.7 && UV.x > 0.04 )
-	//	color = vec4(0.2, 0.8, 0.2, 1.0); // Opaque green
+
+	color = mix(colorFinal, LightColorWithAlpha, MixValue);
 }

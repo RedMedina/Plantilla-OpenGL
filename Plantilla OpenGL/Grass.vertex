@@ -12,19 +12,27 @@ uniform vec3 CameraUp_worldspace;
 uniform mat4 VP; // Model-View-Projection matrix, but without the Model (the position is in BillboardPos; the orientation depends on the camera)
 uniform vec3 BillboardPos; // Position of the center of the billboard
 uniform vec2 BillboardSize; // Size of the billboard, in world units (probably meters)
+uniform float time;
+uniform float time2;
+float windStrength = 0.01;
+float windFrequency = 0.5;
 
 void main()
 {
 	vec3 particleCenter_wordspace = BillboardPos;
+
+	
 	
 	vec3 vertexPosition_worldspace = 
 		particleCenter_wordspace
 		+ CameraRight_worldspace * squareVertices.x * BillboardSize.x
 		+ CameraUp_worldspace * squareVertices.y * BillboardSize.y;
 
+	float displacement = sin(particleCenter_wordspace.y * windFrequency + time2/10) * windStrength;
+    vec3 windOffset = vec3(0.0, displacement, 0.0);
 
 	// Output position of the vertex
-	gl_Position = VP * vec4(-vertexPosition_worldspace, 1.0f);
+	gl_Position = VP * vec4(-vertexPosition_worldspace-windOffset, 1.0f);
 
 	// UV of the vertex. No special space for this one.
 	UV = squareVertices.xy + vec2(0.5, 0.5);

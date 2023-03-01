@@ -19,7 +19,8 @@ public:
 		BillboardSizeID = glGetUniformLocation(programID, "BillboardSize");
 		LifeLevelID = glGetUniformLocation(programID, "LifeLevel");
 		/*Valores para el pasto con viento*/
-		IDtime = glGetUniformLocation(programID, "Time");
+		IDtime1 = glGetUniformLocation(programID, "time1");
+		IDtime2 = glGetUniformLocation(programID, "time2");
 		idWindDir = glGetUniformLocation(programID, "WindDirection");
 		//TextureID2 = glGetUniformLocation(programID, "blendMap");
 		//Texture2 = TextureLoad->LoadAnyTexture(Blendmap);
@@ -65,7 +66,8 @@ public:
 
 		/*Valores para el pasto con viento*/
 		TiempoValor += 1.0f;
-		glUniform1f(IDtime, TiempoValor);
+		glUniform1f(IDtime1, TiempoValor);
+		glUniform1f(IDtime2, TiempoValor);
 		glm::vec2 DireccionViento = glm::vec2(1, 1);
 		glUniform2f(idWindDir, DireccionViento.x, DireccionViento.y);
 		// Bind our texture in Texture Unit 0
@@ -170,6 +172,8 @@ private:
 	GLuint IDtime, idWindDir, ModelID, ViewID, PryectID;
 	float TiempoValor = 1;
 	GLuint TiempoID;
+	GLuint IDtime1;
+	GLuint IDtime2;
 	float Sky = 0.0f;
 	bool SkyB = true;
 };
