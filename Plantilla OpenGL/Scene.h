@@ -41,10 +41,10 @@ public:
 		Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaTextura3.png", "Assets/Agua/AguaN1.jpg", "Assets/Agua/AguaN2.jpg", 50, 50);
 		
 		/*Billboards*/
-		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png");
-		Pasto = new Billboards("Grass.vertex", "Grass.fragment", "Assets/Billboards/grass7.png");
-		Arbusto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/arbusto.png");
-		Arbol = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/Arbol.png");
+		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png", "Assets/Terreno/Blend3.png");
+		Pasto = new Billboards("Grass.vertex", "Grass.fragment", "Assets/Billboards/grass7.png","Assets/Terreno/Blend3.png");
+		Arbusto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/arbusto.png", "Assets/Terreno/Blend3.png");
+		Arbol = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/Arbol.png", "Assets/Terreno/Blend3.png");
 
 		/*Terreno*/
 		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/MonteNormal.png","Assets/Terreno/Pasto.jpg", "Assets/Terreno/PasNormal.png", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/TierraNormal.png", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
@@ -86,7 +86,9 @@ public:
 		/*Carga los billboards*/                              //Posicion  Esta función me dice que altura es la del terreno en esas coords Escala
 		                                                           //X                            Y                            Z
 		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)) + 3, 1), vec2(1, 1), DayTransicionDuration);
-		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-8, Terreno->GetHeightFromRealVector(glm::vec3(-8, 0, 1)) + 0.2, 1), vec2(1, 1), DayTransicionDuration);
+		
+		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(0.2, Terreno->GetHeightFromRealVector(glm::vec3(0.2, 0, 1)) + 0.2, 1), vec2(1, 1), DayTransicionDuration);
+		
 		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7), DayTransicionDuration);
 		Arbol->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(7, Terreno->GetHeightFromRealVector(glm::vec3(7, 0, 40))+6.5, 40), vec2(13, 13), DayTransicionDuration);
 

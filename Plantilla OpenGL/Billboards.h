@@ -3,7 +3,7 @@
 class Billboards
 {
 public:
-	Billboards(const char* vertexShader, const char* fragmentShader, const char* Textura)
+	Billboards(const char* vertexShader, const char* fragmentShader, const char* Textura, const char* Blendmap)
 	{
 		glGenVertexArrays(1, &VertexArrayID);
 		glBindVertexArray(VertexArrayID);
@@ -22,8 +22,8 @@ public:
 		IDtime1 = glGetUniformLocation(programID, "time1");
 		IDtime2 = glGetUniformLocation(programID, "time2");
 		idWindDir = glGetUniformLocation(programID, "WindDirection");
-		//TextureID2 = glGetUniformLocation(programID, "blendMap");
-		//Texture2 = TextureLoad->LoadAnyTexture(Blendmap);
+		TextureID2 = glGetUniformLocation(programID, "blendMap");
+		Texture2 = TextureLoad->LoadAnyTexture(Blendmap);
 		/*----------------------------------------------------------*/
 
 		TextureID = glGetUniformLocation(programID, "myTextureSampler");
@@ -71,10 +71,10 @@ public:
 		glm::vec2 DireccionViento = glm::vec2(1, 1);
 		glUniform2f(idWindDir, DireccionViento.x, DireccionViento.y);
 		// Bind our texture in Texture Unit 0
-		//glActiveTexture(GL_TEXTURE1);
-		//glBindTexture(GL_TEXTURE_2D, Texture2);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, Texture2);
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
-		//glUniform1i(TextureID, 1);
+		glUniform1i(TextureID2, 1);
 		/*----------------------------------------------------------*/
 
 

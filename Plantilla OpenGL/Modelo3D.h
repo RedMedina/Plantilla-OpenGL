@@ -207,8 +207,7 @@ public:
 		// Use our shader
 		glUseProgram(programID);
 
-		glm::vec3 lightPos = glm::vec3(0, 0, 4);
-		glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
+		
 		glUniform1f(PotenciaLuzID, PotenciaLuza);
 
 		glm::mat4 biasMatrix(
@@ -278,6 +277,11 @@ public:
 			SkyB = false;
 		}
 		glUniform1f(TiempoID, Sky);
+		glm::mat4 rotationMatrixLight = glm::rotate(glm::mat4(1.0f), glm::radians(Sky * 360), vec3(1, 1, 0));
+		glm::vec3 lightPos = glm::vec3(0, 0, 4);
+		glm::vec4 lightPosition(0.0f, 0.0f, 4.0f, 4.0f); //ejemplo de posición de luz
+		lightPosition = rotationMatrixLight * lightPosition;
+		glUniform3f(LightID, lightPosition.x, lightPosition.y, lightPosition.z);
 
 		/*
 		// 1rst attribute buffer : vertices

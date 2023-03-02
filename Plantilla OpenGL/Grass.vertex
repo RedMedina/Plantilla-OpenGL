@@ -16,12 +16,12 @@ uniform float time;
 uniform float time2;
 float windStrength = 0.01;
 float windFrequency = 0.5;
+uniform sampler2D blendMap;
+// Number of repetitions
 
 void main()
 {
 	vec3 particleCenter_wordspace = BillboardPos;
-
-	
 	
 	vec3 vertexPosition_worldspace = 
 		particleCenter_wordspace
@@ -31,8 +31,8 @@ void main()
 	float displacement = sin(particleCenter_wordspace.y * windFrequency + time2/10) * windStrength;
     vec3 windOffset = vec3(0.0, displacement, 0.0);
 
-	// Output position of the vertex
-	gl_Position = VP * vec4(-vertexPosition_worldspace-windOffset, 1.0f);
+    gl_Position = VP * vec4((-vertexPosition_worldspace-windOffset), 1.0f);
+   
 
 	// UV of the vertex. No special space for this one.
 	UV = squareVertices.xy + vec2(0.5, 0.5);

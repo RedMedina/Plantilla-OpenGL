@@ -54,7 +54,7 @@ vec3 LightColorr;
 
     //vec3 LightColor = vec3(1,1,1);
 	vec3 LightColor = LightColorr;
-	float LightPower = 2.0;
+	float LightPower = 3.0;
 
      vec4 blendData = texture2D( Blendmap, UV/51.2f);
      float vBlendr = blendData.r;
@@ -88,6 +88,10 @@ vec3 LightColorr;
 	float distance = length( lightPos  );
     vec3 n = TextureNormal_tangentspace;
 	// Direction of the light (from the fragment to the light)
+
+	vec3 LighNewDirection = LightDirection_tangentspace;
+	LighNewDirection.y = time;
+
 	vec3 l = normalize(LightDirection_tangentspace);
 	// Cosine of the angle between the normal and the light direction, 
 	// clamped above 0
