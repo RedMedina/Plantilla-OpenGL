@@ -54,7 +54,7 @@ vec3 LightColorr;
 
     //vec3 LightColor = vec3(1,1,1);
 	vec3 LightColor = LightColorr;
-	float LightPower = 3.0;
+	float LightPower = 2.0;
 
      vec4 blendData = texture2D( Blendmap, UV/51.2f);
      float vBlendr = blendData.r;

@@ -157,6 +157,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clouds.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Grass.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Load3dmodel.h" />
     <ClInclude Include="LoadTexture.h" />

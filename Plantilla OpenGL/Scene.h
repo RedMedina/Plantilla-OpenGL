@@ -8,6 +8,7 @@
 #include "skybox.h"
 #include "Clouds.h"
 #include "Terrain.h"
+#include "Grass.h"
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "Lights.h"
@@ -42,13 +43,16 @@ public:
 		
 		/*Billboards*/
 		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png", "Assets/Terreno/Blend3.png");
-		Pasto = new Billboards("Grass.vertex", "Grass.fragment", "Assets/Billboards/grass7.png","Assets/Terreno/Blend3.png");
+		Pasto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/grass7.png","Assets/Terreno/Blend3.png");
 		Arbusto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/arbusto.png", "Assets/Terreno/Blend3.png");
 		Arbol = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/Arbol.png", "Assets/Terreno/Blend3.png");
 
 		/*Terreno*/
 		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/MonteNormal.png","Assets/Terreno/Pasto.jpg", "Assets/Terreno/PasNormal.png", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/TierraNormal.png", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
 	
+		/*Pasto*/
+		Pastoso = new Grass("Grass.vertex", "Grass.fragment", "Assets/Grass/Grass.png");
+
 		/*Colliders*/
 		PlayerCollider.InitCollider(vec3(0, 0, 5), 6);
 		ArbolAzulCollider.InitCollider(vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), 10);
@@ -91,6 +95,9 @@ public:
 		
 		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7), DayTransicionDuration);
 		Arbol->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(7, Terreno->GetHeightFromRealVector(glm::vec3(7, 0, 40))+6.5, 40), vec2(13, 13), DayTransicionDuration);
+
+		/*Pasto*/
+		Pastoso->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration, vec3(15, Terreno->GetHeightFromRealVector(glm::vec3(15, 0, -10))-0.2, -10));
 
 		/*Se Actualiza la posicion del collider del jugador*/
 		PlayerCollider.SetPosition(position.x, position.y, position.z);
@@ -175,6 +182,7 @@ private:
 	Billboards* Arbol;
 	Water* Agua;
 	Clouds* Nubes;
+	Grass* Pastoso;
 	float DayTransicionDuration = 0.00005f;
 	Terrain* Terreno;
 	float Y_Position = 0;

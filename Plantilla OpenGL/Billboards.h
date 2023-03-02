@@ -48,6 +48,8 @@ public:
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glDepthMask(GL_FALSE);
+
 		// Use our shader
 		glUseProgram(programID);
 
@@ -142,6 +144,8 @@ public:
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 		glDisableVertexAttribArray(0);
+
+		glDepthMask(GL_TRUE);
 		glDisable(GL_BLEND);
 
 	}

@@ -8,8 +8,7 @@ out vec4 color;
 
 uniform sampler2D myTextureSampler;
 uniform float time;
-uniform float time1;
-uniform float LifeLevel;
+uniform float time2;
 
 void main(){
 	// Output color = color of the texture at the specified UV
@@ -19,16 +18,16 @@ void main(){
     vec3 color3c = vec3(0.0, 0.0, 0.0); // Tercer color de transición (negro)
 
 	vec3 LightColorr;
-	if (time < 0.5) {
-        LightColorr = mix(color1a, color2b, time * 2.0);
+	if (time2 < 0.5) {
+        LightColorr = mix(color1a, color2b, time2 * 2.0);
     } else {
-        LightColorr = mix(color2b, color3c, (time - 0.5) * 2.0);
+        LightColorr = mix(color2b, color3c, (time2 - 0.5) * 2.0);
     }
 
 	float waveAmplitude = 0.03;
 	float waveFrequency = 12.0;
 	float waveSpeed = 0.1;
-	float wave = sin(UV.y * waveFrequency + time1 * waveSpeed) * waveAmplitude;
+	float wave = sin(UV.y * waveFrequency + time * waveSpeed) * waveAmplitude;
 	vec2 offset = vec2(0.0, wave);
 
 	vec4 colorFinal = texture( myTextureSampler, UV + offset);
@@ -36,13 +35,13 @@ void main(){
 	vec4 LightColorWithAlpha = vec4(LightColorr, colorFinal.a);
 
 	float MixValue;
-	if(time>0.7)
+	if(time2>0.7)
 	{
-		MixValue=0.55f;
+		MixValue=0.5f;
 	}
 	else
 	{
-		MixValue=0.4f;
+		MixValue=0.25f;
 	}
 
 	color = mix(colorFinal, LightColorWithAlpha, MixValue);
