@@ -161,6 +161,7 @@
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Load3dmodel.h" />
     <ClInclude Include="LoadTexture.h" />
+    <ClInclude Include="Minimapa.h" />
     <ClInclude Include="Modelo3D.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Primitivos.h" />
@@ -187,6 +188,8 @@
     <None Include="Grass.fragment" />
     <None Include="Grass.geom" />
     <None Include="Grass.vertex" />
+    <None Include="minimap.frag" />
+    <None Include="minimap.vertex" />
     <None Include="NormalMapping.fragmentshader" />
     <None Include="NormalMapping.vertexshader" />
     <None Include="Passthrough.vertexshader" />

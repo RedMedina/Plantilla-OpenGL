@@ -89,7 +89,7 @@ public:
         glDeleteVertexArrays(1, &VertexArrayID);
     }
 
-    void Draw(glm::mat4 MVP, int init, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::vec3 position, glm::mat4 ModelMatrix)
+    void Draw(glm::mat4 MVP, int init, glm::mat4 ViewMatrix, glm::mat4 u_ProjectionMatrix, glm::vec3 position, glm::mat4 ModelMatrix, glm::vec3 PositionWater, glm::vec3 Scale)
     {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -100,8 +100,8 @@ public:
 
         // in the "MVP" uniform
         glm::mat4 RotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), vec3(1, 1, 1));
-        glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), vec3(35, 9.0f, 45)); // A bit to the left
-        glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), vec3(6.5f, 6.5f, 6.5f));
+        glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), vec3(PositionWater.x, PositionWater.y, PositionWater.z)); // A bit to the left
+        glm::mat4 ScalingMatrix = glm::scale(glm::mat4(1.0f), vec3(Scale.x, Scale.y, Scale.z));
         glm::mat4 ModelMatrix2 = TranslationMatrix * RotationMatrix * ScalingMatrix;
 
         glm::mat4 MVP2 = u_ProjectionMatrix * ViewMatrix * ModelMatrix2;

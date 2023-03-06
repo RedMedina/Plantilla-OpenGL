@@ -39,13 +39,13 @@ vec3 calcNormal()
     vec3 N = normalize(Normal);
     vec3 Binormal = normalize(binormal);
     vec2 texCoord2 = UV;
-    texCoord2.y += amplitude * sin(speed * UV.x + frequency * time);
+    texCoord2.y += amplitude * sin(speed * UV.x + frequency * (time)/5);
     vec2 texCoord3 = UV;
-    texCoord3.x += amplitude * sin(speed * UV.y + frequency * time);
+    texCoord3.x += amplitude * sin(speed * UV.y + frequency * (time)/5);
     vec3 mapN;
 
-    vec3 mapNTex1 = (1-texture(NormalTexture, texCoord2*2).rgb) * 2.0 - 1.0;
-    vec3 mapNTex2 = (texture(NormalTexture2, texCoord3*2).rgb) * 2.0 - 1.0;
+    vec3 mapNTex1 = (1-texture(NormalTexture, texCoord2*10).rgb) * 2.0 - 1.0;
+    vec3 mapNTex2 = (texture(NormalTexture2, texCoord3*10).rgb) * 2.0 - 1.0;
     mapN = mix(mapNTex1, mapNTex2, 0.5);
     mat3 TBN = mat3(T, Binormal, N);
     return normalize(bumpPower * TBN * mapN);
@@ -74,7 +74,7 @@ void main()
     vec4 FinalWaterColor = mix(texture(WaterTexture, UV*6), ReflectionColorFinal, 0.2) * vec4(vec3(ambient + diffuse) + specular, 1.0);
 
     //fragColor = FinalWaterColor;
-    fragColor = texture(WaterTexture, UV*6) * vec4(vec3(ambient + diffuse) + specular, 1.0);
+    fragColor = texture(WaterTexture, UV*20) * vec4(vec3(ambient + diffuse) + specular, 1.0);
 
     //vec4 texColor = texture(WaterTexture, UV + textureOffset);
     //fragColor = texColor;

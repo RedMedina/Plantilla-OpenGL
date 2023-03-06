@@ -95,6 +95,9 @@
     <ClInclude Include="Grass.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Minimapa.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TransformVertexShader.vertexshader">
@@ -164,6 +167,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="SimpleTexture.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="minimap.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="minimap.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

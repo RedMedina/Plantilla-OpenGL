@@ -27,43 +27,43 @@ public:
 		/*Luces*/
 		lights = new Lights;
 		lights->InitLights();
-		
+
 		/*Skybox*/
-		skydome = new Skybox(500,"Skybox.vertex", "Skybox.fragment", "Assets/Skydome/Dia.png", "Assets/Skydome/Atardecer.png","Assets/Skydome/SkyBoxNcche2.png");
+		skydome = new Skybox(500, "Skybox.vertex", "Skybox.fragment", "Assets/Skydome/Dia.png", "Assets/Skydome/Atardecer.png", "Assets/Skydome/SkyBoxNcche2.png");
 		/*Nubes*/
 		Nubes = new Clouds("Clouds.vertex", "Clouds.fragment", "Assets/Skydome/nube1.png");
 
 		/*Modelos 3D*/
 		ModeloTest = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/ArbolAzul/Arbol.obj", "Assets/Modelos/ArbolAzul/ArbolTextura.bmp", "Assets/Modelos/ArbolAzul/ArbolTextura.bmp", "Assets/Modelos/ArbolAzul/ArbolN.bmp", 10);
-		ModeloCaja = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/normal.bmp",1);
+		ModeloCaja = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Cubo/cube.obj", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/cubeText.bmp", "Assets/Modelos/Cubo/normal.bmp", 1);
 		Arbol1 = new Modelo3D("NormalMapping.vertexshader", "NormalMapping.fragmentshader", "Assets/Modelos/Arbol/Arbol1.obj", "Assets/Modelos/Arbol/TexturaArbol.png", "Assets/Modelos/Arbol/TexturaArbol.png", "Assets/Modelos/Arbol/ArbolNormales.png", 3);
 
 		/*Agua*/
 		Agua = new Water("WaterVertex.vertexhader", "WaterFragment.fragmentshader", "Assets/Agua/AguaTextura3.png", "Assets/Agua/AguaN1.jpg", "Assets/Agua/AguaN2.jpg", 50, 50);
-		
+
 		/*Billboards*/
-		bill1 = new Billboards("billboard.vertex","billboard.fragment","Assets/Billboards/grass2.png", "Assets/Terreno/Blend3.png");
-		Pasto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/grass7.png","Assets/Terreno/Blend3.png");
+		bill1 = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/grass2.png", "Assets/Terreno/Blend3.png");
+		Pasto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/grass7.png", "Assets/Terreno/Blend3.png");
 		Arbusto = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/arbusto.png", "Assets/Terreno/Blend3.png");
 		Arbol = new Billboards("billboard.vertex", "billboard.fragment", "Assets/Billboards/Arbol.png", "Assets/Terreno/Blend3.png");
 
 		/*Terreno*/
-		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/Monte.jpg", "Assets/Terreno/MonteNormal.png","Assets/Terreno/Pasto.jpg", "Assets/Terreno/PasNormal.png", "Assets/Terreno/Tierra.jpg", "Assets/Terreno/TierraNormal.png", "Assets/Terreno/Blend3.png", "Assets/Terreno/Alturas2.png");
-	
+		Terreno = new Terrain("Terrain.vertex", "Terrain.fragment", "Assets/Terreno/mon.png", "Assets/Terreno/monN.png", "Assets/Terreno/grass.png", "Assets/Terreno/grassN.png", "Assets/Terreno/octostoneAlbedo.png", "Assets/Terreno/CaminoNormal2.png", "Assets/Terreno/Blendmap3.png", "Assets/Terreno/Heightmap3.png");
+
 		/*Pasto*/
 		Pastoso = new Grass("Grass.vertex", "Grass.fragment", "Assets/Grass/Grass.png");
 
 		/*Colliders*/
-		PlayerCollider.InitCollider(vec3(0, 0, 5), 6);
-		ArbolAzulCollider.InitCollider(vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), 10);
-		Arbol1Collider.InitCollider(vec3(10, Terreno->GetHeightFromRealVector(glm::vec3(10, 0, 3)), 3), 10);
+		PlayerCollider.InitBoxCollider(vec3(0, 0, 5), vec3(5, 25, 5));
+		//PlayerCollider.InitCollider(vec3(0, 0, 5), 10);
+	    Arbol1Collider.InitBoxCollider(vec3(10, Terreno->GetHeightFromRealVector(glm::vec3(10, 0, 3)), 3), vec3(1, 15, 1));
+		//Arbol1Collider.InitCollider(vec3(10, Terreno->GetHeightFromRealVector(glm::vec3(10, 0, 3)), 3), 10);
 		PushCollider(Arbol1Collider);
-		PushCollider(ArbolAzulCollider);
 	}
 
-	void Render(GLFWwindow* window , glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position)
+	void Render(GLFWwindow* window, glm::mat4 MVP, glm::mat4 ViewMatrix, glm::mat4 ModelMatrix, glm::mat3 ModelView3x3Matrix, glm::mat4 ProjectionMatrix, glm::vec3 position)
 	{
-		
+
 		/*Aqui se ejecutara todo el juego*/
 
 		// Borra el buffer de color
@@ -74,40 +74,43 @@ public:
 		Nubes->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration);
 
 		/*Carga los modelos*/                                                              //Posicion                                                          Escala     Rotacion
-		ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), vec3(1,1,1),  0, DayTransicionDuration);
-		
+		//ModeloTest->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 1)), 1), vec3(1,1,1),  0, DayTransicionDuration);
+
 		/*Modelos para desbugear el Terreno no preguntes, solo deja esto como está xd*/
 		ModeloCaja->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(1, -200, 10), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga el Terreno*/
-		Terreno->SetRenderSize(300.0f, 75.0f, 300.0f);
-		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelView3x3Matrix,ModelMatrix, DayTransicionDuration, position);
+		Terreno->SetRenderSize(800.0f, 250, 800.0f);
+		Terreno->Render(MVP, ViewMatrix, ProjectionMatrix, ModelView3x3Matrix, ModelMatrix, DayTransicionDuration, position);
+
 		/*Carga el agua*/
-		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix);
+		Agua->Draw(MVP, init, ViewMatrix, ProjectionMatrix, position, ModelMatrix, vec3(0, Terreno->GetHeightFromRealVector(glm::vec3(0, 0, 0)) - 3.5, 0), vec3(30, 30, 30));
+
 		/*Se coloca en la varible Y_Position la posción del Y del terreno apartir de la posición de la camara*/
 		Y_Position = Terreno->GetHeightFromRealVector(position) + 3.0f;
 
 		Arbol1->Draw(MVP, ViewMatrix, ModelMatrix, ModelView3x3Matrix, ProjectionMatrix, vec3(10, Terreno->GetHeightFromRealVector(glm::vec3(10, 0, 3)), 3), vec3(1, 1, 1), 0, DayTransicionDuration);
 		/*Carga los billboards*/                              //Posicion  Esta función me dice que altura es la del terreno en esas coords Escala
-		                                                           //X                            Y                            Z
+																   //X                            Y                            Z
 		bill1->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(-5, Terreno->GetHeightFromRealVector(glm::vec3(-5, 0, 1)) + 3, 1), vec2(1, 1), DayTransicionDuration);
-		
+
 		Pasto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(0.2, Terreno->GetHeightFromRealVector(glm::vec3(0.2, 0, 1)) + 0.2, 1), vec2(1, 1), DayTransicionDuration);
-		
-		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10))+2, 10), vec2(7, 7), DayTransicionDuration);
-		Arbol->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(7, Terreno->GetHeightFromRealVector(glm::vec3(7, 0, 40))+6.5, 40), vec2(13, 13), DayTransicionDuration);
+
+		Arbusto->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(5, Terreno->GetHeightFromRealVector(glm::vec3(5, 0, 10)) + 2, 10), vec2(7, 7), DayTransicionDuration);
+		Arbol->Draw(ViewMatrix, ProjectionMatrix, ModelMatrix, vec3(7, Terreno->GetHeightFromRealVector(glm::vec3(7, 0, 40)) + 6.5, 40), vec2(13, 13), DayTransicionDuration);
 
 		/*Pasto*/
-		Pastoso->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration, vec3(15, Terreno->GetHeightFromRealVector(glm::vec3(15, 0, -10))-0.2, -10));
+		Pastoso->Draw(MVP, ViewMatrix, ModelMatrix, ProjectionMatrix, DayTransicionDuration, vec3(15, Terreno->GetHeightFromRealVector(glm::vec3(15, 0, -10)) - 0.2, -10));
 
 		/*Se Actualiza la posicion del collider del jugador*/
-		PlayerCollider.SetPosition(position.x, position.y, position.z);
+		//PlayerCollider.SetPosition(position.x, position.y, position.z);
+		PlayerCollider.SetPositionBox(position.x, position.y, position.z);
 
 		/*Verifica las colisiones*/
 		ColliderBackPos = false;
 		Collider* AuxDetectColl = Colliders;
 		while (AuxDetectColl != NULL)
 		{
-			if (intersect(PlayerCollider, AuxDetectColl)) {
+			if (intersectBox(PlayerCollider, AuxDetectColl)) {
 				// colisión detectada
 				ColliderBackPos = true;
 			}
@@ -133,6 +136,19 @@ public:
 		return ColliderBackPos;
 	}
 
+
+	bool intersectBox(Collider box1, Collider* box2) {
+		glm::vec3 box1Min = box1.centerBox - box1.extents;
+		glm::vec3 box1Max = box1.centerBox + box1.extents;
+		glm::vec3 box2Min = box2->centerBox - box2->extents;
+		glm::vec3 box2Max = box2->centerBox + box2->extents;
+
+		return (box1Min.x <= box2Max.x && box1Max.x >= box2Min.x) &&
+			(box1Min.y <= box2Max.y && box1Max.y >= box2Min.y) &&
+			(box1Min.z <= box2Max.z && box1Max.z >= box2Min.z);
+	}
+
+
 	bool intersect(Collider sphere1, Collider* sphere2) {
 		float distance = glm::distance(sphere1.center, sphere2->center);
 		return distance <= (sphere1.radius + sphere2->radius);
@@ -151,7 +167,9 @@ public:
 			AuxColliders = AuxColliders->sig;
 		}
 		AuxColliders->center = datos.center;
+		AuxColliders->centerBox = datos.centerBox;
 		AuxColliders->radius = datos.radius;
+		AuxColliders->extents = datos.extents;
 		AuxColliders->sig = NULL;
 	}
 
